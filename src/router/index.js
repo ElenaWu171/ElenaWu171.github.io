@@ -1,23 +1,43 @@
-import { createRouter, createWebHistory } from 'vue-router'
-import HomeView from '../views/HomeView.vue'
+import { createRouter, createWebHistory } from "vue-router";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
-      path: '/',
-      name: 'home',
-      component: HomeView
+      path: "/",
+      name: "home",
     },
+    // 分館介紹
     {
-      path: '/about',
-      name: 'about',
-      // route level code-splitting
-      // this generates a separate chunk (About.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      component: () => import('../views/AboutView.vue')
-    }
-  ]
-})
+      path: "/brenches_intro",
+      name: "brenches_intro",
+      component: () => import("../views/brenches_intro.vue"),
+    },
+    // 分館-個別介紹
+    {
+      path: "/brenches_detail",
+      name: "brenches_detail",
+      component: () => import("../views/brenche_detail.vue"),
+    },
+    // 分館-房型介紹
+    {
+      path: "/brenches_room",
+      name: "brenches_room",
+      component: () => import("../views/brenches_room.vue"),
+    },
+    // 最新消息
+    {
+      path: "/news_update",
+      name: "news_update",
+      component: () => import("../views/news_update.vue"),
+    },
+    // 最新消息_細節
+    {
+      path: "/news_detail",
+      name: "news_detail",
+      component: () => import("../views/news_detail.vue"),
+    },
+  ],
+});
 
-export default router
+export default router;
