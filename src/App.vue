@@ -43,9 +43,11 @@ export default {
           <div class="nav_r">
             <div class="nav_logo"></div>
             <RouterLink class="nav_link" to="/">首頁</RouterLink>
-            <RouterLink class="nav_link" to="/">分頁資訊</RouterLink>
-            <RouterLink class="nav_link" to="/">最新消息</RouterLink>
-            <RouterLink class="nav_link" to="/">聯絡我們</RouterLink>
+            <RouterLink class="nav_link" to="/brenches_intro"
+              >分館介紹</RouterLink
+            >
+            <RouterLink class="nav_link" to="/news_update">最新消息</RouterLink>
+            <RouterLink class="nav_link" to="/contact_us">聯絡我們</RouterLink>
           </div>
         </div>
       </nav>
@@ -62,9 +64,9 @@ export default {
           <div class="footer_nav_t_r">
             <ul>
               <li><RouterLink to="/">首頁</RouterLink></li>
-              <li><RouterLink to="/">分頁資訊</RouterLink></li>
-              <li><RouterLink to="/">最新消息</RouterLink></li>
-              <li><RouterLink to="/">聯絡我們</RouterLink></li>
+              <li><RouterLink to="/brenches_intro">分館介紹</RouterLink></li>
+              <li><RouterLink to="/news_update">最新消息</RouterLink></li>
+              <li><RouterLink to="/contact_us">聯絡我們</RouterLink></li>
             </ul>
           </div>
         </div>

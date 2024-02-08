@@ -1,14 +1,13 @@
 <script>
+import comp_general_card from "@/components/general/comp_general_card.vue";
 export default {
-  data() {
-    return {};
-  },
-  components: {},
-  methods: {},
-  mounted: {},
+  components: { comp_general_card },
 };
 </script>
 <template>
-  <div></div>
+  <div>
+    我是首頁
+    <comp_general_card></comp_general_card>
+  </div>
 </template>
-<script lang="scss" scope></script>
+<style lang="scss" scope></style>

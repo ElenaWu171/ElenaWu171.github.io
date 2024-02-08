@@ -5,10 +5,9 @@ export default {
   },
   components: {},
   methods: {},
-  mounted: {},
 };
 </script>
 <template>
   <div></div>
 </template>
-<script lang="scss" scope></script>
+<style lang="scss" scope></style>
