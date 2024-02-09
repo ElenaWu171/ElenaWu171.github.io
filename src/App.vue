@@ -34,7 +34,7 @@ export default {
     <div class="relative">
       <nav>
         <div class="logo"></div>
-        <div class="boob_now_btn">立即訂房</div>
+        <div class="boob_now_btn hvr-grow">立即訂房</div>
         <div class="colse_btn" @click="nav_off($event)"></div>
         <div ref="nav_full" class="nav_full" v-show="nav_fleg">
           <div class="nav_l">
@@ -43,7 +43,7 @@ export default {
           <div class="nav_r">
             <div class="nav_logo"></div>
             <RouterLink class="nav_link" to="/">首頁</RouterLink>
-            <RouterLink class="nav_link" to="/brenches_intro"
+            <RouterLink class="nav_link" to="/branch_intro"
               >分館介紹</RouterLink
             >
             <RouterLink class="nav_link" to="/news_update">最新消息</RouterLink>
@@ -53,6 +53,8 @@ export default {
       </nav>
     </div>
   </header>
+
+  <RouterView />
   <footer>
     <div>
       <nav class="footer_nav">
@@ -64,7 +66,7 @@ export default {
           <div class="footer_nav_t_r">
             <ul>
               <li><RouterLink to="/">首頁</RouterLink></li>
-              <li><RouterLink to="/brenches_intro">分館介紹</RouterLink></li>
+              <li><RouterLink to="/branch_intro">分館介紹</RouterLink></li>
               <li><RouterLink to="/news_update">最新消息</RouterLink></li>
               <li><RouterLink to="/contact_us">聯絡我們</RouterLink></li>
             </ul>
@@ -74,8 +76,6 @@ export default {
       </nav>
     </div>
   </footer>
-
-  <RouterView />
 </template>
 
 <style lang="scss" scoped>
@@ -124,7 +124,7 @@ export default {
 }
 // 下方footer
 footer {
-  @apply absolute bottom-0 h-[275px] w-[100%] bg-mainBrownColor font-semibold;
+  @apply h-[275px] w-[100%] bg-mainBrownColor font-semibold;
   .footer_nav {
     @apply flex flex-col w-[100%] h-[100%];
     .footer_nav_t {

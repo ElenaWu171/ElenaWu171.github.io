@@ -10,21 +10,21 @@ const router = createRouter({
     },
     // 分館介紹
     {
-      path: "/brenches_intro",
-      name: "brenches_intro",
-      component: () => import("../views/brenches_intro.vue"),
+      path: "/branch_intro",
+      name: "branch_intro",
+      component: () => import("../views/branch_intro.vue"),
     },
     // // 分館-個別介紹
     {
-      path: "/brenches_detail",
-      name: "brenches_detail",
-      component: () => import("../views/brenche_detail.vue"),
+      path: "/branch_detail",
+      name: "branch_detail",
+      component: () => import("../views/branch_detail.vue"),
     },
     // // 分館-房型介紹
     {
-      path: "/brenches_room",
-      name: "brenches_room",
-      component: () => import("../views/brenches_room.vue"),
+      path: "/branch_room",
+      name: "branch_room",
+      component: () => import("../views/branch_room.vue"),
     },
     // // 最新消息
     {
