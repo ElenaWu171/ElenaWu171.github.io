@@ -2,6 +2,7 @@
 import { RouterLink, RouterView } from "vue-router";
 import img_ham from "@/assets/img/nav/img_ham.svg";
 import img_close from "@/assets/img/nav/img_close.svg";
+
 // import HelloWorld from './components/HelloWorld.vue'
 export default {
   data() {

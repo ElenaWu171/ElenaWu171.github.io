@@ -13,6 +13,7 @@
     "hover.css": "^2.3.2",
     "swiper": "^11.0.6",
     "vue": "^3.4.15",
+    "vue-owl-carousel": "^2.0.3",
     "vue-router": "^4.2.5"
   },
   "devDependencies": {

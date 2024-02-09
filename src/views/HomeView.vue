@@ -1,5 +1,11 @@
 <script>
 import { Swiper, SwiperSlide } from "swiper/vue";
+import img_tem1 from "@/assets/img/general/img_tem1.jpg";
+import img_tem2 from "@/assets/img/general/img_tem2.jpg";
+import img_tem3 from "@/assets/img/general/img_tem3.jpg";
+import img_tem4 from "@/assets/img/general/img_tem4.jpg";
+import img_tem5 from "@/assets/img/general/img_tem5.jpg";
+import img_tem6 from "@/assets/img/general/img_tem6.jpg";
 
 // Import Swiper styles
 import "swiper/css";
@@ -11,6 +17,16 @@ import comp_general_card from "@/components/general/comp_general_card.vue";
 import { Autoplay, Pagination, Navigation } from "swiper/modules";
 
 export default {
+  data() {
+    return {
+      img_tem1,
+      img_tem2,
+      img_tem3,
+      img_tem4,
+      img_tem5,
+      img_tem6,
+    };
+  },
   components: {
     Swiper,
     SwiperSlide,
@@ -99,9 +115,76 @@ export default {
       </div>
     </div>
     <div class="branch_box parallax">
+      <div class="title">分館介紹</div>
       <div class="brench">
-        <div class="title"></div>
-        <div class="brench_card"></div>
+        <swiper
+          :slidesPerView="1"
+          :spaceBetween="10"
+          :pagination="{
+            clickable: true,
+          }"
+          :breakpoints="{
+            '640': {
+              slidesPerView: 2,
+              spaceBetween: 20,
+            },
+            '768': {
+              slidesPerView: 4,
+              spaceBetween: 40,
+            },
+            '1024': {
+              slidesPerView: 5,
+              spaceBetween: 50,
+            },
+          }"
+          :modules="modules"
+          class="mySwiper"
+        >
+          <swiper-slide
+            class="slide hvr-pulse-shrink"
+            :style="{ backgroundImage: `url(${img_tem1})` }"
+            ><div class="text">桃園中壢車站店</div></swiper-slide
+          >
+          <swiper-slide
+            class="slide hvr-pulse-shrink"
+            :style="{ backgroundImage: `url(${img_tem2})` }"
+          >
+            <div class="text">台中站前一館</div></swiper-slide
+          ><swiper-slide
+            class="slide hvr-pulse-shrink"
+            :style="{ backgroundImage: `url(${img_tem3})` }"
+            ><div class="text">台中站前二館</div></swiper-slide
+          >
+          <swiper-slide
+            class="slide hvr-pulse-shrink"
+            :style="{ backgroundImage: `url(${img_tem4})` }"
+            ><div class="text">台中中正店</div></swiper-slide
+          ><swiper-slide
+            class="slide hvr-pulse-shrink"
+            :style="{ backgroundImage: `url(${img_tem5})` }"
+            ><div class="text">台中成功店</div></swiper-slide
+          >
+          <swiper-slide
+            class="slide hvr-pulse-shrink"
+            :style="{ backgroundImage: `url(${img_tem6})` }"
+            ><div class="text">台中捷運中清店</div></swiper-slide
+          ><swiper-slide
+            class="slide hvr-pulse-shrink"
+            :style="{ backgroundImage: `url(${img_tem1})` }"
+            ><div class="text">
+              台中捷運文心店<br />(逢甲1號店)
+            </div></swiper-slide
+          >
+          <swiper-slide
+            class="slide hvr-pulse-shrink"
+            :style="{ backgroundImage: `url(${img_tem2})` }"
+            ><div class="text">高雄九如店</div></swiper-slide
+          ><swiper-slide
+            class="slide hvr-pulse-shrink"
+            :style="{ backgroundImage: `url(${img_tem3})` }"
+            ><div class="text">高雄車站店</div></swiper-slide
+          >
+        </swiper>
       </div>
     </div>
     <div class="book_now"></div>
@@ -172,10 +255,23 @@ export default {
 .branch_box {
   @apply w-[100%] h-[1000px] flex flex-col justify-center;
   .brench {
-    @apply w-[100%] h-[750px] bg-SecPinkColor;
+    @apply w-[100%] h-[750px];
   }
 }
 .title {
   @apply flex justify-center text-desktopLgTitle pt-[22px] font-semibold;
+}
+.brench {
+  @apply flex items-center;
+  .mySwiper {
+    @apply h-[487px];
+    .slide {
+      @apply cursor-pointer flex justify-center items-center rounded-[20px] border-mainGreenColor border-[2px] bg-cover bg-center bg-no-repeat;
+
+      .text {
+        @apply w-[100%] flex justify-center items-center text-desktopTitle text-baseWhiteColor bg-baseBlackGrayColor bg-opacity-[0.8];
+      }
+    }
+  }
 }
 </style>
