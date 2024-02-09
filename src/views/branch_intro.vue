@@ -1,13 +1,14 @@
 <script>
+import comp_branch_card from "@/components/branch_intro/comp_branch_card.vue";
 export default {
-  data() {
-    return {};
-  },
-  components: {},
+  components: { comp_branch_card },
+
   methods: {},
 };
 </script>
 <template>
-  <div></div>
+  <div>
+    <comp_branch_card></comp_branch_card>
+  </div>
 </template>
 <style lang="scss" scoped></style>

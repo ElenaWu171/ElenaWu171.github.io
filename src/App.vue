@@ -31,7 +31,8 @@ export default {
 
 <template>
   <header>
-    <div class="relative">
+    <!-- 配合swiper調整z -->
+    <div class="relative z-[2]">
       <nav>
         <div class="logo"></div>
         <div class="boob_now_btn hvr-grow">立即訂房</div>
@@ -53,8 +54,8 @@ export default {
       </nav>
     </div>
   </header>
+  <main><RouterView /></main>
 
-  <RouterView />
   <footer>
     <div>
       <nav class="footer_nav">

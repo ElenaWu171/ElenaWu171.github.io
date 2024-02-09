@@ -1,7 +1,9 @@
 <script>
 export default {
   data() {
-    return {};
+    return {
+      card_b_l_flag: true,
+    };
   },
 };
 </script>
@@ -20,7 +22,7 @@ export default {
       </div>
     </div>
     <div class="card_b">
-      <div class="card_b_l">
+      <div class="card_b_l" v-if="card_b_l_flag">
         <!-- google 或 日期 -->
         <slot name="custom">google map</slot>
       </div>
@@ -32,19 +34,19 @@ export default {
 .card {
   @apply w-[312px] h-[474px];
   .card_t {
-    @apply w-[100%] h-[240px] rounded-[20px] bg-SecPinkColor;
+    @apply w-[100%] h-[240px] rounded-[20px] border-mainGreenColor border-[2px] bg-[url("@/assets/img/general/img_news_default.svg")];
   }
   .card_m {
     @apply p-[10px];
     .card_m_title {
-      @apply flex justify-center w-[100%] h-[66px] text-[1.875rem] font-semibold;
+      @apply w-[100%] h-[66px] text-[1.875rem] font-semibold truncate;
     }
     .card_m_content {
       @apply w-[100%] h-[90px]  text-desktopBodyText truncate;
     }
   }
   .card_b {
-    @apply flex justify-between text-desktopBodyText  pl-[10px] pr-[10px] text-mainBrownColor;
+    @apply flex justify-around text-desktopBodyText  pl-[10px] pr-[10px] text-mainBrownColor;
   }
 }
 </style>
