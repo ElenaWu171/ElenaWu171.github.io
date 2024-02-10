@@ -25,6 +25,14 @@ export default {
       img_tem4,
       img_tem5,
       img_tem6,
+      imgs: {
+        img_tem1,
+        img_tem2,
+        img_tem3,
+        img_tem4,
+        img_tem5,
+        img_tem6,
+      },
     };
   },
   components: {
@@ -56,18 +64,23 @@ export default {
         :modules="modules"
         class="mySwiper"
       >
-        <swiper-slide class="banner">Slide 1</swiper-slide>
-        <swiper-slide class="banner">Slide 2</swiper-slide
-        ><swiper-slide class="banner">Slide 3</swiper-slide>
+        <swiper-slide
+          v-for="item in imgs"
+          :key="item.id"
+          class="banner"
+          :style="{ backgroundImage: `url(${item})` }"
+        ></swiper-slide>
+        <!-- <swiper-slide class="banner">Slide 2</swiper-slide
+        ><swiper-slide class="banner">Slide 3</swiper-slide>-->
       </swiper>
     </div>
     <div class="about_kiwi">
       <div class="about_kiwi_t">
-        <div class="title">關於奇異果</div>
+        <div class="title text-baseWhiteColor">關於奇異果</div>
       </div>
       <div class="about_kiwi_b">
-        <div class="img"></div>
-        <div class="text">
+        <div class="img" data-aos="fade-right"></div>
+        <div class="text" data-aos="fade-left">
           優質、簡約、舒適、平價<br />
           奇異果快捷旅店是瑞石旅館事業集團旗下第一個獨立品牌，<br />
           「從旅客的角度出發，用心服務與旅客互動」，以年輕、舒活的清新風格，<br />
@@ -78,8 +91,8 @@ export default {
     <div class="news_box parallax">
       <div class="news">
         <div class="title">最新消息</div>
-        <div class="content">
-          <comp_general_card>
+        <div class="content" data-aos="fade-down">
+          <comp_general_card class="hvr-grow cursor-pointer">
             <!-- custom -->
             <template v-slot:title> 旅店發行之住宿優惠很豐富 </template>
             <template v-slot:content>
@@ -87,12 +100,12 @@ export default {
             </template>
             <template v-slot:custom> 2024/1/27 </template>
           </comp_general_card>
-          <comp_general_card>
+          <comp_general_card class="hvr-grow cursor-pointer">
             <template v-slot:title> ❤全新裝潢~超優會活動來</template>
             <template v-slot:content> 無 </template>
             <template v-slot:custom> 2024/1/2 </template>
           </comp_general_card>
-          <comp_general_card>
+          <comp_general_card class="hvr-grow cursor-pointer">
             <template v-slot:title> KIWI高雄九如店最大優惠活動</template>
             <template v-slot:content>
               優惠方案不適用網路訂房及優惠不得併用哦
@@ -104,19 +117,19 @@ export default {
     </div>
     <div class="feature">
       <div class="feature_t">
-        <div class="title">我們的特色</div>
+        <div class="title text-baseWhiteColor">我們的特色</div>
       </div>
       <div class="feature_b">
-        <div class="text">
+        <div class="text" data-aos="fade-right">
           奇異果快捷旅店突破一般旅館傳統的框架，加入許多<br />時尚、簡約、舒適、便捷的舒活元素，創造出一間<br />全新旅店空間概念，提供旅客便捷、全方位、發自內心的<br />互動與服務，讓旅客一踏進KIWI
           HOTEL，就能自然放鬆，<br />卸除旅途的疲憊，就如同KIWI奇異果的特色，小巧又饒富滋味。
         </div>
-        <div class="img"></div>
+        <div class="img" data-aos="fade-left"></div>
       </div>
     </div>
     <div class="branch_box parallax">
       <div class="title">分館介紹</div>
-      <div class="brench">
+      <div class="brench" data-aos="fade-down">
         <swiper
           :slidesPerView="1"
           :spaceBetween="10"
@@ -187,14 +200,17 @@ export default {
         </swiper>
       </div>
     </div>
-    <div class="book_now"></div>
+    <div class="book_now hvr-sweep-to-right">
+      Book Now
+      <div class="icon"></div>
+    </div>
   </div>
 
   <!-- <comp_general_card></comp_general_card> -->
 </template>
 <style lang="scss" scoped>
 .banner {
-  @apply w-[100%] h-[768px] bg-[skyblue];
+  @apply w-[100%] h-[100vh] bg-[skyblue] bg-cover bg-no-repeat bg-center;
 }
 .about_kiwi {
   @apply w-[100%] h-[522px] bg-mainBrownColor;
@@ -258,20 +274,28 @@ export default {
     @apply w-[100%] h-[750px];
   }
 }
-.title {
-  @apply flex justify-center text-desktopLgTitle pt-[22px] font-semibold;
-}
+
 .brench {
   @apply flex items-center;
   .mySwiper {
     @apply h-[487px];
+
     .slide {
-      @apply cursor-pointer flex justify-center items-center rounded-[20px] border-mainGreenColor border-[2px] bg-cover bg-center bg-no-repeat;
+      @apply shadow-md cursor-pointer flex justify-center items-center rounded-[20px] border-mainGreenColor border-[2px] bg-cover bg-center bg-no-repeat;
 
       .text {
         @apply w-[100%] flex justify-center items-center text-desktopTitle text-baseWhiteColor bg-baseBlackGrayColor bg-opacity-[0.8];
       }
     }
   }
+}
+.book_now {
+  @apply cursor-pointer w-[100%] h-[185px] flex justify-center items-center gap-[12px] bg-mainYellowColor text-desktopLgTitle;
+  .icon {
+    @apply w-[106px] h-[106px] bg-[url("@/assets/icons/home_view/icon_book_now.svg")];
+  }
+}
+.title {
+  @apply flex justify-center text-desktopLgTitle pt-[22px] font-semibold;
 }
 </style>

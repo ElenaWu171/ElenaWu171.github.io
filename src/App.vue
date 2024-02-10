@@ -83,10 +83,10 @@ export default {
 <style lang="scss" scoped>
 // 浮動元件
 .colse_btn {
-  @apply absolute top-[40px] right-[40px] w-[50px] h-[50px] bg-[url("@/assets/img/nav/img_ham.svg")] cursor-pointer z-[3];
+  @apply fixed top-[40px] right-[40px] w-[50px] h-[50px] bg-[url("@/assets/img/nav/img_ham.svg")] cursor-pointer z-[3];
 }
 .logo {
-  @apply absolute left-[20px] top-[58px] w-[278px] h-[50px] bg-contain bg-no-repeat bg-[url("@/assets/img/nav/img_logo.png")];
+  @apply fixed left-[20px] top-[58px] w-[278px] h-[50px] bg-contain bg-no-repeat bg-[url("@/assets/img/nav/img_logo.png")];
 }
 .boob_now_btn {
   writing-mode: vertical-lr;
@@ -97,7 +97,7 @@ export default {
 }
 // 上方導航
 .nav_full {
-  @apply relative flex w-full h-[100vh] bg-[skyblue] p-[200px] font-semibold z-[2];
+  @apply fixed flex w-full h-[100vh] bg-[skyblue] p-[200px] font-semibold z-[2];
 
   .nav_l {
     @apply flex  justify-center items-center flex-1;

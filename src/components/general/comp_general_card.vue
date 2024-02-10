@@ -47,6 +47,9 @@ export default {
   }
   .card_b {
     @apply flex justify-around text-desktopBodyText  pl-[10px] pr-[10px] text-mainBrownColor;
+    .card_b_r:hover {
+      @apply text-mainGreenColor;
+    }
   }
 }
 </style>
