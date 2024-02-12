@@ -1,15 +1,13 @@
 <script>
-import { Swiper, SwiperSlide } from "swiper/vue";
 import img_tem1 from "@/assets/img/general/img_tem1.jpg";
 import img_tem2 from "@/assets/img/general/img_tem2.jpg";
 import img_tem3 from "@/assets/img/general/img_tem3.jpg";
 import img_tem4 from "@/assets/img/general/img_tem4.jpg";
 import img_tem5 from "@/assets/img/general/img_tem5.jpg";
 import img_tem6 from "@/assets/img/general/img_tem6.jpg";
-
+import { Swiper, SwiperSlide } from "swiper/vue";
 // Import Swiper styles
 import "swiper/css";
-
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 import comp_general_card from "@/components/general/comp_general_card.vue";
@@ -62,6 +60,7 @@ export default {
         }"
         :navigation="true"
         :modules="modules"
+        :initialSlide="3"
         class="mySwiper"
       >
         <swiper-slide

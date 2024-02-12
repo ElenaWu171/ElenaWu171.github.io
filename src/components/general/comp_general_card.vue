@@ -1,15 +1,20 @@
 <script>
+// import imageUrl from "@/assets/img/general/img_news_default.svg";
 export default {
   data() {
     return {
       card_b_l_flag: true,
     };
   },
+  props: ["imageUrl"],
 };
 </script>
 <template>
   <div class="card">
-    <div class="card_t"></div>
+    <div
+      class="card_t"
+      :style="{ backgroundImage: 'url(' + imageUrl + ')' }"
+    ></div>
     <div class="card_m">
       <div class="card_m_title">
         <!-- 使用v-slot:title -->
@@ -32,9 +37,9 @@ export default {
 </template>
 <style lang="scss" scoped>
 .card {
-  @apply w-[312px] h-[474px];
+  @apply w-[312px] h-[474px] border-[2px] border-mainBrownColor rounded-[20px] p-[4px];
   .card_t {
-    @apply w-[100%] h-[240px] rounded-[20px] border-mainGreenColor border-[2px] bg-[url("@/assets/img/general/img_news_default.svg")];
+    @apply w-[100%] h-[240px] rounded-[20px] border-mainBrownColor  border-[2px] bg-cover bg-center bg-no-repeat;
   }
   .card_m {
     @apply p-[10px];
