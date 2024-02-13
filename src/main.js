@@ -3,6 +3,9 @@ import "./assets/index.css";
 import "./assets/hover.css";
 import "swiper/css";
 import "swiper/css/pagination";
+import "swiper/css/free-mode";
+import "swiper/css/navigation";
+import "swiper/css/thumbs";
 // import "./style.css";
 
 import AOS from "aos";

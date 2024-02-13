@@ -168,7 +168,7 @@ export default {
   <div>
     <div class="all">
       <button type="button" class="go_to_room hvr-radial-in">
-        前往房型<br />介紹
+        <RouterLink to="/branch_room">前往房型<br />介紹</RouterLink>
       </button>
       <div class="basic_info">
         <div
@@ -181,7 +181,9 @@ export default {
             <div class="tel">03-1234567</div>
             <div class="address">桃園市中壢區新興路286號7</div>
           </div>
-          <button type="button" class="btn">前往房型介紹</button>
+          <button type="button" class="btn">
+            <RouterLink to="/branch_room">前往房型介紹</RouterLink>
+          </button>
         </div>
       </div>
       <div class="about_branch">
