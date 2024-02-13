@@ -17,9 +17,6 @@ export default defineComponent({
     Navigation,
     Pagination,
   },
-  // data: () => ({
-  //   currentSlide: 0,
-  // }),
   data() {
     return {
       currentSlide: 0,
@@ -31,12 +28,26 @@ export default defineComponent({
       this.currentSlide = val;
     },
   },
+  // mounted:{
+
+  // },
+  props: {
+    // 控制排版要圖片置左或右 1置右 0置左
+    change_branch_room_index: { type: Number, default: 1 },
+    change_branch_room_img: {
+      type: Array,
+    },
+  },
 });
 </script>
 <template>
   <div class="card">
     <div class="card_t">
-      <div class="card_t_l img">
+      <!-- 父層排序方式 -->
+      <div
+        class="card_t_l img"
+        :style="{ order: `${change_branch_room_index}` }"
+      >
         <!-- 照片 -->
         <Carousel
           id="gallery"
@@ -44,7 +55,8 @@ export default defineComponent({
           :wrap-around="false"
           v-model="currentSlide"
         >
-          <Slide v-for="item in slides" :key="item.id">
+          <!-- 父層傳遞相簿圖片change_branch_room_img arrary -->
+          <Slide v-for="item in change_branch_room_img" :key="item.id">
             <div
               class="carousel__item"
               :style="{ backgroundImage: `url(${item})` }"
@@ -59,7 +71,7 @@ export default defineComponent({
           v-model="currentSlide"
           ref="carousel"
         >
-          <Slide v-for="(item, index) in slides" :key="item.id">
+          <Slide v-for="(item, index) in change_branch_room_img" :key="item.id">
             <div
               class="carousel__item"
               @click="slideTo(index)"
@@ -70,19 +82,47 @@ export default defineComponent({
       </div>
       <div class="card_t_r">
         <div class="title">
-          <slot name="title">雙人房(雙床房)</slot>
+          <slot name="branch_room_names">雙人房(雙床房)</slot>
         </div>
         <div class="content">
           <ul>
-            <li><slot name="branch_room_names">精緻雙人房</slot></li>
-            <li><slot name="branch_room_headcount">2-3人</slot></li>
-            <li><slot name="branch_room_type">雙床</slot></li>
-            <li><slot name="branch_room_size">約6坪</slot></li>
-            <li><slot name="branch_room_floor">木頭地板</slot></li>
-            <li><slot name="branch_room_bathroom">乾溼分離</slot></li>
-            <li><slot name="branch_room_window">依房型</slot></li>
-            <li><slot name="branch_room_extra_persons">不可加人</slot></li>
-            <li><slot name="branch_room_effective_time">2024/2/8</slot></li>
+            <li>住房人數：<slot name="branch_room_headcount">2-3人</slot></li>
+            <li>
+              地&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;板：<slot
+                name="branch_room_type"
+                >雙床</slot
+              >
+            </li>
+            <li>
+              坪&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;數：<slot
+                name="branch_room_size"
+                >約6坪</slot
+              >
+            </li>
+            <li>
+              地&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;板：<slot
+                name="branch_room_floor"
+                >木頭地板</slot
+              >
+            </li>
+            <li>
+              浴&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;室：<slot
+                name="branch_room_bathroom"
+                >乾溼分離</slot
+              >
+            </li>
+            <li>
+              窗&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;戶：<slot
+                name="branch_room_window"
+                >依房型</slot
+              >
+            </li>
+            <li>
+              加&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;人：<slot
+                name="branch_room_extra_persons"
+                >不可加人</slot
+              >
+            </li>
           </ul>
         </div>
       </div>
