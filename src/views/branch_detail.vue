@@ -354,7 +354,7 @@ export default {
         }
       }
       .btn {
-        @apply ml-[12px] w-[180px] h-[50px] rounded-[20px] text-baseWhiteColor bg-mainGreenColor;
+        @apply ml-[12px] w-[180px] h-[50px] rounded-[20px] text-baseWhiteColor text-desktopBackendBodyText bg-mainGreenColor;
       }
       .btn:hover {
         &::after {

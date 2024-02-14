@@ -30,8 +30,30 @@ export default {
         img_tem3,
         img_tem4,
         img_tem5,
-        img_tem6,
       },
+      news_obj: [
+        {
+          title: "榮獲優良住宿",
+          content: "恭賀獲得觀光大聯盟認證為最優秀民宿",
+          img: img_tem1,
+          date: "2024/2/14",
+          belong: "台中站前一館",
+        },
+        {
+          title: "五星級飯店入選",
+          content: "豪華飯店榮獲國際五星級評鑑，提供一流的服務和設施",
+          img: img_tem2,
+          date: "2024/1/15",
+          belong: "台中站前二館",
+        },
+        {
+          title: "度假村獲得業界好評",
+          content: "風景優美的度假村被譽為最佳度假勝地，受到業界和遊客好評",
+          img: img_tem3,
+          date: "2023/1/1",
+          belong: "台中成功店",
+        },
+      ],
     };
   },
   components: {
@@ -96,8 +118,8 @@ export default {
       <div class="news">
         <div class="title">最新消息</div>
         <div class="content" data-aos="fade-down">
-          <comp_general_card class="hvr-grow cursor-pointer">
-            <!-- custom -->
+          <!-- <comp_general_card class="hvr-grow cursor-pointer">
+       
             <template v-slot:title> 旅店發行之住宿優惠很豐富 </template>
             <template v-slot:content>
               一、本商品（服務）禮劵已加入由台灣省旅館商
@@ -115,6 +137,25 @@ export default {
               優惠方案不適用網路訂房及優惠不得併用哦
             </template>
             <template v-slot:custom> 2023/9/30 </template>
+          </comp_general_card> -->
+          <comp_general_card
+            v-for="item in news_obj"
+            :imageUrl="item.img"
+            :pop_up_title="item.title"
+            :pop_up_content="item.content"
+            :key="item.id"
+            class="hvr-grow cursor-pointer"
+          >
+            <template v-slot:title> {{ item.title }} </template>
+            <template v-slot:content>
+              {{ item.content }}
+            </template>
+            <template v-slot:custom>
+              {{ item.date }}
+            </template>
+            <template v-slot:belong_branch>
+              {{ item.belong }}
+            </template>
           </comp_general_card>
         </div>
       </div>

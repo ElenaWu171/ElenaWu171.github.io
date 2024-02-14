@@ -44,6 +44,36 @@ const router = createRouter({
       name: "contact_us",
       component: () => import("../views/contact_us.vue"),
     },
+    // 後台-登入
+    {
+      path: "/backend_login",
+      name: "backend_login",
+      component: () => import("../views/backend_login.vue"),
+    },
+    // 後台-banner管理
+    {
+      path: "/backend_banner_manage",
+      name: "backend_banner_manage",
+      component: () => import("../views/backend_banner_manage.vue"),
+    },
+    // 後台-分館資訊管理
+    {
+      path: "/backend_branch_manage",
+      name: "backend_branch_manage",
+      component: () => import("../views/backend_branch_manage.vue"),
+    },
+    // 後台-分館房型管理
+    {
+      path: "/backend_room_manage",
+      name: "backend_room_manage",
+      component: () => import("../views/backend_room_manage.vue"),
+    },
+    // 後台-最新消息管理
+    {
+      path: "/backend_news_manage",
+      name: "backend_news_manage",
+      component: () => import("../views/backend_news_manage.vue"),
+    },
   ],
 });
 

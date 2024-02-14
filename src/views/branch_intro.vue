@@ -135,6 +135,9 @@ export default {
   <div>
     <div class="all">
       <div class="title" data-aos="zoom-in-up">分館介紹</div>
+      <div class="content">
+        奇異果快捷旅店共有9間分館，分布高雄市、台中市以及桃園市。
+      </div>
       <div class="search_box" data-aos="zoom-in-up">
         <div class="search_box_t">
           <div class="text">分店名稱查詢 :</div>
@@ -171,6 +174,9 @@ export default {
   @apply bg-[url("@/assets/img/general/img_bg.svg")] bg-no-repeat bg-cover flex flex-col items-center;
   .title {
     @apply flex justify-center text-desktopXlTitle pt-[176px] tracking-widest;
+  }
+  .content {
+    @apply text-desktopBodyText;
   }
   .search_box {
     @apply w-[100%] flex flex-col items-center  mt-[80px];
