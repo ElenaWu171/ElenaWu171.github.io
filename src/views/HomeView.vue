@@ -6,6 +6,7 @@ import img_tem4 from "@/assets/img/general/img_tem4.jpg";
 import img_tem5 from "@/assets/img/general/img_tem5.jpg";
 import img_tem6 from "@/assets/img/general/img_tem6.jpg";
 import { Swiper, SwiperSlide } from "swiper/vue";
+import "animate.css";
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/pagination";
@@ -72,6 +73,10 @@ export default {
         <!-- <swiper-slide class="banner">Slide 2</swiper-slide
         ><swiper-slide class="banner">Slide 3</swiper-slide>-->
       </swiper>
+      <div class="welcome" data-aos="zoom-in-up">
+        <p>歡迎光臨</p>
+        <p>奇異果快捷旅店</p>
+      </div>
     </div>
     <div class="about_kiwi">
       <div class="about_kiwi_t">
@@ -208,6 +213,9 @@ export default {
   <!-- <comp_general_card></comp_general_card> -->
 </template>
 <style lang="scss" scoped>
+.welcome {
+  @apply absolute bottom-[10%] right-[0] z-[1] text-[80px] w-[50%] bg-mainGreenColor bg-opacity-80 text-baseWhiteColor text-center rounded-[10px];
+}
 .banner {
   @apply w-[100%] h-[100vh] bg-[skyblue] bg-cover bg-no-repeat bg-center;
 }
