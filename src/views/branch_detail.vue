@@ -170,7 +170,7 @@ export default {
       <button type="button" class="go_to_room hvr-radial-in">
         <RouterLink to="/branch_room">前往房型<br />介紹</RouterLink>
       </button>
-      <div class="basic_info">
+      <div class="basic_info" data-aos="fade-up">
         <div
           class="basic_info_l"
           :style="{ backgroundImage: `url(${img_tem1})` }"
@@ -338,7 +338,7 @@ export default {
     .basic_info_r {
       @apply flex-1 flex flex-col pt-[117px] pl-[54px];
       .basic_info_title {
-        @apply text-desktopLgTitle;
+        @apply text-desktopLgTitle tracking-wider;
       }
       .basic_info_content {
         @apply flex flex-col justify-center mt-[67px] mb-[67px]  h-[140px] text-desktopBodyText;
@@ -375,7 +375,7 @@ export default {
   }
 
   .branch_facility {
-    @apply w-[1220px] h-[751px];
+    @apply w-[1220px] h-[751px] text-[20px];
     .branch_facility_b {
       @apply flex mt-[60px];
       .branch_facility_mySwiper {
@@ -420,7 +420,7 @@ export default {
     @apply mt-[60px] w-[100%] flex justify-center;
   }
   .title {
-    @apply text-desktopLgTitle w-[100%] flex justify-center font-semibold;
+    @apply text-desktopLgTitle w-[100%] flex justify-center tracking-widest;
   }
 }
 // .swiper-wrapper {

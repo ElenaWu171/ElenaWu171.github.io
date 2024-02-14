@@ -1,6 +1,7 @@
 import "./assets/main.css";
 import "./assets/index.css";
 import "./assets/hover.css";
+import "./assets/font.css";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/free-mode";

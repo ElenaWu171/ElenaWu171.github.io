@@ -43,7 +43,7 @@ export default {
   .card_b {
     @apply justify-center;
     .title {
-      @apply flex justify-center text-desktopLgTitle font-bold mb-[20px];
+      @apply flex justify-center text-desktopLgTitle font-semibold mb-[20px];
     }
     .tel {
       @apply text-desktopTitle flex items-center justify-center;
@@ -84,7 +84,7 @@ export default {
   transform: rotatey(0deg);
 }
 .card-container {
-  @apply flex justify-center items-center;
+  @apply flex justify-center;
 }
 .card-container:hover .cover {
   transform: rotatey(180deg);

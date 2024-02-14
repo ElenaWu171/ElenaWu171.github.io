@@ -85,7 +85,7 @@ export default {
 </script>
 <template>
   <div class="all">
-    <div class="top">
+    <div class="top" data-aos="fade-up">
       <div class="title">房型說明</div>
       <div class="content">
         桃園中壢車站店共有16間房，包含6人房、4人房、2人房，男女獨立宿舍、混和宿舍等。
@@ -93,6 +93,7 @@ export default {
     </div>
     <div class="bottom">
       <comp_card_pic_l
+        data-aos="fade-up"
         class="mb-[40px]"
         v-for="(item, index) in branch_room"
         :key="item.id"
@@ -133,7 +134,7 @@ export default {
   .top {
     @apply w-[100%] h-[162px] flex flex-col justify-between items-center  mt-[176px];
     .title {
-      @apply text-desktopLgTitle  font-semibold;
+      @apply flex justify-center text-desktopXlTitle  tracking-widest;
     }
     .content {
       @apply text-desktopBodyText;

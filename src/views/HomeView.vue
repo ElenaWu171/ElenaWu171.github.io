@@ -295,6 +295,6 @@ export default {
   }
 }
 .title {
-  @apply flex justify-center text-desktopLgTitle pt-[22px] font-semibold;
+  @apply flex justify-center text-desktopLgTitle pt-[22px]  tracking-widest;
 }
 </style>

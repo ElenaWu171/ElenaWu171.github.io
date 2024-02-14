@@ -5,7 +5,7 @@ export default {
     extend: {},
     fontSize: {
       // 電腦版-特大標題
-      desktopXlTitle: "6rem",
+      desktopXlTitle: "3.25rem",
       // 電腦版-大標題
       desktopLgTitle: "2.5rem",
       // 電腦版-標題

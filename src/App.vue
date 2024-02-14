@@ -17,6 +17,7 @@ export default {
     RouterView,
   },
   methods: {
+    // 控制導覽列是否開啟關閉X =
     nav_off(e) {
       this.nav_fleg = !this.nav_fleg;
       console.log(e.target);
@@ -26,6 +27,10 @@ export default {
         e.target.style.backgroundImage = `url('${this.img_close}')`;
       }
     },
+    nav_to_page() {
+      this.nav_fleg = !this.nav_fleg;
+      this.$refs.colse_btn.style.backgroundImage = `url('${this.img_ham}')`;
+    },
   },
 };
 </script>
@@ -33,33 +38,47 @@ export default {
 <template>
   <header>
     <!-- 配合swiper調整z -->
-    <div class="relative z-[2]">
+    <div class="relative z-[2] font-[openhuninn]">
       <nav>
-        <div class="logo"></div>
+        <RouterLink class="nav_link" to="/"
+          ><div class="logo"></div
+        ></RouterLink>
         <div class="boob_now_btn hvr-grow">立即訂房</div>
-        <div class="colse_btn" @click="nav_off($event)"></div>
+        <div class="colse_btn" ref="colse_btn" @click="nav_off($event)"></div>
         <div ref="nav_full" class="nav_full" v-show="nav_fleg">
           <div class="nav_l">
             <div class="nav_l_img"></div>
           </div>
           <div class="nav_r">
             <div class="nav_logo"></div>
-            <RouterLink class="nav_link" to="/">首頁</RouterLink>
-            <RouterLink class="nav_link" to="/branch_intro"
+            <RouterLink class="nav_link" to="/" @click="nav_to_page()"
+              >首頁</RouterLink
+            >
+            <RouterLink
+              class="nav_link"
+              to="/branch_intro"
+              @click="nav_to_page()"
               >分館介紹</RouterLink
             >
-            <RouterLink class="nav_link" to="/news_update">最新消息</RouterLink>
-            <RouterLink class="nav_link" to="/contact_us">聯絡我們</RouterLink>
+            <RouterLink
+              class="nav_link"
+              to="/news_update"
+              @click="nav_to_page()"
+              >最新消息</RouterLink
+            >
+            <RouterLink class="nav_link" to="/contact_us" @click="nav_to_page()"
+              >聯絡我們</RouterLink
+            >
           </div>
         </div>
       </nav>
     </div>
   </header>
-  <main><RouterView /></main>
+  <main class="font-[openhuninn]"><RouterView /></main>
 
   <footer>
     <div>
-      <nav class="footer_nav">
+      <nav class="footer_nav font-[openhuninn]">
         <div class="footer_nav_t">
           <div class="footer_nav_t_l">
             <div class="footer_logo"></div>
@@ -97,7 +116,7 @@ export default {
 }
 // 上方導航
 .nav_full {
-  @apply fixed flex w-full h-[100vh] bg-[skyblue] p-[200px] font-semibold z-[2];
+  @apply fixed flex w-full h-[100vh] bg-[#F2FFD4] p-[200px]  z-[2];
 
   .nav_l {
     @apply flex  justify-center items-center flex-1;
@@ -111,7 +130,7 @@ export default {
       @apply w-[328px] h-[55px] bg-contain bg-no-repeat  bg-[url("@/assets/img/nav/img_logo.png")];
     }
     .nav_link {
-      @apply mt-[40px] text-start w-[140px] text-desktopBodyText font-bold;
+      @apply mt-[40px] text-start w-[140px] text-desktopBodyText;
     }
     .nav_link:hover {
       &::after {
@@ -126,7 +145,7 @@ export default {
 }
 // 下方footer
 footer {
-  @apply h-[275px] w-[100%] bg-mainBrownColor font-semibold;
+  @apply h-[275px] w-[100%] bg-mainBrownColor;
   .footer_nav {
     @apply flex flex-col w-[100%] h-[100%];
     .footer_nav_t {

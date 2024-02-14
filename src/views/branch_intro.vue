@@ -118,7 +118,9 @@ export default {
       console.log("篩選", this.branch_info_obj_select);
       // 保留原始內容，如果有配對到才更新
       if (this.branch_info_obj_select != "") {
+        console.log("執行這邊");
         this.branch_info_obj = this.branch_info_obj_select;
+        console.log("branch_info_obj", this.branch_info_obj);
       } else {
         this.branch_info_obj = [];
       }
@@ -132,8 +134,8 @@ export default {
 <template>
   <div>
     <div class="all">
-      <div class="title">分館介紹</div>
-      <div class="search_box">
+      <div class="title" data-aos="zoom-in-up">分館介紹</div>
+      <div class="search_box" data-aos="zoom-in-up">
         <div class="search_box_t">
           <div class="text">分店名稱查詢 :</div>
 
@@ -154,7 +156,7 @@ export default {
           <button type="button" class="tag">高雄市</button>
         </div>
       </div>
-      <div class="cards">
+      <div class="cards" data-aos="zoom-in">
         <comp_branch_card v-for="item in branch_info_obj" :key="item.id">
           <template v-slot:title>{{ item.name }}</template>
           <template v-slot:tel>{{ item.number }}</template>
@@ -168,31 +170,31 @@ export default {
 .all {
   @apply bg-[url("@/assets/img/general/img_bg.svg")] bg-no-repeat bg-cover flex flex-col items-center;
   .title {
-    @apply flex justify-center text-desktopLgTitle pt-[176px] font-semibold;
+    @apply flex justify-center text-desktopXlTitle pt-[176px] tracking-widest;
   }
   .search_box {
-    @apply w-[100%] flex flex-col items-center mt-[12px];
+    @apply w-[100%] flex flex-col items-center  mt-[80px];
     .text {
-      @apply mr-[6px];
+      @apply mr-[6px]  text-desktopTitle;
     }
     .search_box_t {
-      @apply flex  w-[90%] h-[40px]  text-desktopBodyText;
+      @apply flex items-center w-[90%] h-[50px]  text-desktopBodyText;
       .inp {
         @apply w-[20%] h-[100%] border-solid border-[2px] rounded-[12px] pl-[6px];
       }
       .search_icon {
-        @apply w-[40px] h-[40px]  bg-[url("@/assets/icons/branch_intro/icon_search.svg")] bg-contain bg-no-repeat bg-center;
+        @apply w-[40px] h-[40px]  bg-[url("@/assets/icons/branch_intro/icon_search.svg")] bg-contain bg-no-repeat bg-bottom;
       }
     }
     .search_box_b {
-      @apply flex w-[90%] justify-start text-desktopBodyText mt-[12px];
+      @apply flex w-[90%] justify-start text-desktopBodyText mt-[24px];
       .tag {
-        @apply px-[6px] py-[4px] mr-[6px] rounded-md   text-baseWhiteColor font-semibold bg-SecPinkColor;
+        @apply px-[6px] py-[4px] mr-[12px] rounded-md   text-baseWhiteColor  bg-SecPinkColor;
       }
     }
   }
   .cards {
-    @apply grid grid-cols-3 gap-[10px] justify-center  w-[100%] h-[2500px] pt-[35px];
+    @apply grid grid-cols-3 gap-[10px]  w-[100%] h-[2500px] pt-[35px];
   }
 }
 </style>
