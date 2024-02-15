@@ -129,6 +129,12 @@ export default {
       }
     },
   },
+  mounted() {
+    // 控制footer顯示
+    document.querySelector("footer").style.display = "block";
+    // 控制後台 nav不顯示
+    document.querySelector("#backend_nav").style.display = "none";
+  },
 };
 </script>
 <template>

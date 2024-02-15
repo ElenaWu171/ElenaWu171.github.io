@@ -2,6 +2,7 @@
 import { RouterLink, RouterView } from "vue-router";
 import img_ham from "@/assets/img/nav/img_ham.svg";
 import img_close from "@/assets/img/nav/img_close.svg";
+import backend_nav from "@/components/backend_/backend_nav.vue";
 
 // import HelloWorld from './components/HelloWorld.vue'
 export default {
@@ -10,12 +11,17 @@ export default {
       img_ham,
       img_close,
       nav_fleg: false,
+      footer_show_flag: true,
     };
   },
   components: {
     RouterLink,
     RouterView,
+    backend_nav,
   },
+  // mounted() {
+  //   this.backend_page_flag=
+  // },
   methods: {
     // 控制導覽列是否開啟關閉X =
     nav_off(e) {
@@ -30,6 +36,10 @@ export default {
     nav_to_page() {
       this.nav_fleg = !this.nav_fleg;
       this.$refs.colse_btn.style.backgroundImage = `url('${this.img_ham}')`;
+    },
+    footer_control(data) {
+      this.footer_show_flag = data;
+      console.log("這邊有執行");
     },
   },
 };
@@ -73,6 +83,7 @@ export default {
         </div>
       </nav>
     </div>
+    <backend_nav></backend_nav>
   </header>
   <main class="font-[openhuninn]"><RouterView /></main>
 
@@ -90,6 +101,7 @@ export default {
               <li><RouterLink to="/branch_intro">分館介紹</RouterLink></li>
               <li><RouterLink to="/news_update">最新消息</RouterLink></li>
               <li><RouterLink to="/contact_us">聯絡我們</RouterLink></li>
+              <li><RouterLink to="/backend_login">員工專區</RouterLink></li>
             </ul>
           </div>
         </div>

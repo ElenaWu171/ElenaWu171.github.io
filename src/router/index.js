@@ -33,11 +33,11 @@ const router = createRouter({
       component: () => import("../views/news_update.vue"),
     },
     // // 最新消息_細節
-    {
-      path: "/news_detail",
-      name: "news_detail",
-      component: () => import("../views/news_detail.vue"),
-    },
+    // {
+    //   path: "/news_detail",
+    //   name: "news_detail",
+    //   component: () => import("../views/news_detail.vue"),
+    // },
     // // 最新消息_細節
     {
       path: "/contact_us",

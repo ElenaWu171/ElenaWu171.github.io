@@ -92,7 +92,10 @@ export default {
     },
   },
   mounted() {
-    this.news_obj_filter = this.news_obj;
+    // 控制footer顯示
+    document.querySelector("footer").style.display = "block";
+    // 控制後台 nav不顯示
+    document.querySelector("#backend_nav").style.display = "none";
   },
 };
 </script>

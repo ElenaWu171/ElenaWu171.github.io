@@ -30,6 +30,10 @@ export default {
       baseGrayWhiteColor: "#C2C2C2",
       baseWhiteColor: "#FFFFFF",
     },
+    // compilerOptions: {
+    //   // ...
+    //   types: ["element-plus/global"],
+    // },
   },
   plugins: [],
   purge: ["./index.html", "./src/**/*.{vue,js,ts,jsx,tsx}"],

@@ -54,6 +54,7 @@ export default {
           belong: "台中成功店",
         },
       ],
+      // off_footer: false,
     };
   },
   components: {
@@ -61,6 +62,13 @@ export default {
     SwiperSlide,
     comp_general_card,
   },
+  mounted() {
+    // 控制footer顯示
+    document.querySelector("footer").style.display = "block";
+    // 控制後台 nav不顯示
+    document.querySelector("#backend_nav").style.display = "none";
+  },
+
   setup() {
     return {
       modules: [Autoplay, Pagination, Navigation],
