@@ -4,6 +4,7 @@ export default {
   data() {
     return { tem_img };
   },
+  methods: {},
 };
 </script>
 <template>
@@ -22,6 +23,7 @@ export default {
     </div>
     <div class="card back">
       <button class="more" type="button">
+        <!-- 由這邊決定下個頁面的內容 -->
         <RouterLink to="/branch_detail">更多</RouterLink>
       </button>
     </div>

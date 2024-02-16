@@ -4,100 +4,55 @@ export default {
   components: { comp_branch_card },
   data() {
     return {
-      branch_info_obj: [
-        {
-          name: "桃園中壢車站店",
-          address: "桃園市中壢區新興路286號",
-          number: "886-3-4688820",
-        },
-        {
-          name: "台中站前一館",
-          address: "台中市中區台灣大道一段19號（原中正路11號）",
-          number: "886-4-22245577",
-        },
-        {
-          name: "台中站前二館",
-          address: "台中市西區綠川西街29號",
-          number: "886-4-35067728",
-        },
-        {
-          name: "台中中正店",
-          address: "台中市中區台灣大道一段441號(原中正路253號)",
-          number: "886-4-22294466",
-        },
-        {
-          name: "台中成功店",
-          address: "台中市中區成功路165號",
-          number: "886-4-35090681",
-        },
-        {
-          name: "台中捷運中清店",
-          address: "台中市北區華美街二段312號",
-          number: "886-4-35006537",
-        },
-        {
-          name: "台中捷運文心店(逢甲1號店)",
-          address: "台中市西屯區文心路三段362號",
-          number: "886-4-23127766",
-        },
-        {
-          name: "高雄九如店",
-          address: "高雄市三民區九如一路790號",
-          number: "886-7-9560604",
-        },
-        {
-          name: "高雄車站店",
-          address: "高雄市三民區大連街88號",
-          number: "886-7-3130888",
-        },
-      ],
-      branch_info_obj_ori: [
-        {
-          name: "桃園中壢車站店",
-          address: "桃園市中壢區新興路286號",
-          number: "886-3-4688820",
-        },
-        {
-          name: "台中站前一館",
-          address: "台中市中區台灣大道一段19號（原中正路11號）",
-          number: "886-4-22245577",
-        },
-        {
-          name: "台中站前二館",
-          address: "台中市西區綠川西街29號",
-          number: "886-4-35067728",
-        },
-        {
-          name: "台中中正店",
-          address: "台中市中區台灣大道一段441號(原中正路253號)",
-          number: "886-4-22294466",
-        },
-        {
-          name: "台中成功店",
-          address: "台中市中區成功路165號",
-          number: "886-4-35090681",
-        },
-        {
-          name: "台中捷運中清店",
-          address: "台中市北區華美街二段312號",
-          number: "886-4-35006537",
-        },
-        {
-          name: "台中捷運文心店(逢甲1號店)",
-          address: "台中市西屯區文心路三段362號",
-          number: "886-4-23127766",
-        },
-        {
-          name: "高雄九如店",
-          address: "高雄市三民區九如一路790號",
-          number: "886-7-9560604",
-        },
-        {
-          name: "高雄車站店",
-          address: "高雄市三民區大連街88號",
-          number: "886-7-3130888",
-        },
-      ],
+      branch_info_obj_api: [],
+      branch_info_obj: [],
+      // branch_info_obj: [
+      //   {
+      //     name: "桃園中壢車站店",
+      //     address: "桃園市中壢區新興路286號",
+      //     number: "886-3-4688820",
+      //   },
+      //   {
+      //     name: "台中站前一館",
+      //     address: "台中市中區台灣大道一段19號（原中正路11號）",
+      //     number: "886-4-22245577",
+      //   },
+      //   {
+      //     name: "台中站前二館",
+      //     address: "台中市西區綠川西街29號",
+      //     number: "886-4-35067728",
+      //   },
+      //   {
+      //     name: "台中中正店",
+      //     address: "台中市中區台灣大道一段441號(原中正路253號)",
+      //     number: "886-4-22294466",
+      //   },
+      //   {
+      //     name: "台中成功店",
+      //     address: "台中市中區成功路165號",
+      //     number: "886-4-35090681",
+      //   },
+      //   {
+      //     name: "台中捷運中清店",
+      //     address: "台中市北區華美街二段312號",
+      //     number: "886-4-35006537",
+      //   },
+      //   {
+      //     name: "台中捷運文心店(逢甲1號店)",
+      //     address: "台中市西屯區文心路三段362號",
+      //     number: "886-4-23127766",
+      //   },
+      //   {
+      //     name: "高雄九如店",
+      //     address: "高雄市三民區九如一路790號",
+      //     number: "886-7-9560604",
+      //   },
+      //   {
+      //     name: "高雄車站店",
+      //     address: "高雄市三民區大連街88號",
+      //     number: "886-7-3130888",
+      //   },
+      //]
       inputValue: "",
       branch_info_obj_select: [],
     };
@@ -107,26 +62,33 @@ export default {
     // 輸入框自動篩選
     auto_select() {
       this.branch_info_obj_select = [];
-      this.branch_info_obj = this.branch_info_obj_ori;
+      this.branch_info_obj = this.branch_info_obj_api;
       // 判斷輸入的內容是否包含items.name
       this.branch_info_obj.forEach((items) => {
-        if (items.name.includes(this.inputValue) & (this.inputValue != "")) {
+        if (
+          items.BRANCH_NAMES.includes(this.inputValue) &
+          (this.inputValue != "")
+        ) {
           this.branch_info_obj_select.push(items);
         }
       });
-      console.log("原始", this.branch_info_obj);
-      console.log("篩選", this.branch_info_obj_select);
+      // console.log("原始", this.branch_info_obj);
+      // console.log("篩選", this.branch_info_obj_select);
       // 保留原始內容，如果有配對到才更新
       if (this.branch_info_obj_select != "") {
         console.log("執行這邊");
         this.branch_info_obj = this.branch_info_obj_select;
-        console.log("branch_info_obj", this.branch_info_obj);
+        // console.log("branch_info_obj", this.branch_info_obj_api);
       } else {
         this.branch_info_obj = [];
       }
       if (this.inputValue == "") {
-        this.branch_info_obj = this.branch_info_obj_ori;
+        this.branch_info_obj = this.branch_info_obj_api;
       }
+    },
+    which_branch(element) {
+      // 父view傳父view太過複雜，所以把點擊到的對象傳到localstorage，到branch_detail.vue時再讀取顯示
+      sessionStorage.setItem("branch_key", element);
     },
   },
   mounted() {
@@ -134,6 +96,17 @@ export default {
     document.querySelector("footer").style.display = "block";
     // 控制後台 nav不顯示
     document.querySelector("#backend_nav").style.display = "none";
+    // 取得資料
+    fetch("http://localhost:3000/branch")
+      .then((response) => {
+        console.log(response);
+        return response.json();
+      })
+      .then((data) => {
+        console.log(data);
+        return (this.branch_info_obj_api = data), (this.branch_info_obj = data);
+      })
+      .catch((error) => console.error(error));
   },
 };
 </script>
@@ -166,10 +139,14 @@ export default {
         </div>
       </div>
       <div class="cards" data-aos="zoom-in">
-        <comp_branch_card v-for="item in branch_info_obj" :key="item.id">
-          <template v-slot:title>{{ item.name }}</template>
-          <template v-slot:tel>{{ item.number }}</template>
-          <template v-slot:address>{{ item.address }}</template>
+        <comp_branch_card
+          v-for="item in branch_info_obj"
+          :key="item.id"
+          @click="which_branch(item.BRANCH_ID)"
+        >
+          <template v-slot:title>{{ item.BRANCH_NAMES }}</template>
+          <template v-slot:tel>{{ item.BRANCH_CONTACT_NUMBER }}</template>
+          <template v-slot:address>{{ item.BRANCH_ADRESS }}</template>
         </comp_branch_card>
       </div>
     </div>

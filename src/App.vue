@@ -19,6 +19,7 @@ export default {
     RouterView,
     backend_nav,
   },
+  
   // mounted() {
   //   this.backend_page_flag=
   // },

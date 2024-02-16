@@ -1,4 +1,5 @@
 <script>
+// 隨機獲取房間圖片 https://source.unsplash.com/featured/?bedroom
 import { Swiper, SwiperSlide } from "swiper/vue";
 
 // import required modules
@@ -41,6 +42,7 @@ export default {
         img_tem5,
         img_tem6,
       },
+
       attractions_obj: [
         {
           title: "台中秋虹谷",
@@ -149,6 +151,9 @@ export default {
           img: img_tem5,
         },
       ],
+      branch_info_obj_api: [],
+      branch_key: "",
+      choosen_branch: [],
     };
   },
   components: {
@@ -161,13 +166,40 @@ export default {
       modules: [EffectCoverflow, Pagination],
     };
   },
+
   mounted() {
     // 控制footer顯示
     document.querySelector("footer").style.display = "block";
     // 控制後台 nav不顯示
     document.querySelector("#backend_nav").style.display = "none";
+    // 取得資料
+    fetch("http://localhost:3000/branch")
+      .then((response) => {
+        // console.log(response);
+        return response.json();
+      })
+      .then((data) => {
+        // 順序 : 或去數據-> 獲取sessionStorage --> 篩選數據渲染畫面
+        console.log(data);
+        this.branch_info_obj_api = data;
+        this.branch_key = sessionStorage.getItem("branch_key");
+        this.show_which_branch();
+      })
+      .catch((error) => console.error(error));
+
+    // 取得存在sessionStorage的資料(來自branch_info.vue)
+
+    // console.log(this.branch_key);
+    // 執行比對函數
   },
-  methods: {},
+  methods: {
+    show_which_branch() {
+      this.choosen_branch = this.branch_info_obj_api.filter((branch) => {
+        return branch.BRANCH_ID == this.branch_key;
+      });
+      console.log(this.choosen_branch);
+    },
+  },
 };
 </script>
 <template>
@@ -182,10 +214,15 @@ export default {
           :style="{ backgroundImage: `url(${img_tem1})` }"
         ></div>
         <div class="basic_info_r">
-          <div class="basic_info_title">桃園中壢車站店</div>
+          <div class="basic_info_title">
+            <!-- 一開始內容為加載完成加入?避免加載錯誤，确保异步加载的数据已经准备好 -->
+            {{ choosen_branch[0]?.BRANCH_NAMES }}
+          </div>
           <div class="basic_info_content">
-            <div class="tel">03-1234567</div>
-            <div class="address">桃園市中壢區新興路286號7</div>
+            <div class="tel">
+              {{ choosen_branch[0]?.BRANCH_CONTACT_NUMBER }}
+            </div>
+            <div class="address">{{ choosen_branch[0]?.BRANCH_ADRESS }}</div>
           </div>
           <button type="button" class="btn">
             <RouterLink to="/branch_room">前往房型介紹</RouterLink>
@@ -195,8 +232,7 @@ export default {
       <div class="about_branch">
         <div class="title text-baseWhiteColor" data-aos="fade-up">關於我們</div>
         <div class="about_branch_content" data-aos="fade-up">
-          奇異果共享旅店打開旅人的視野，提供一個多元、開放的社交空間，在空間或資訊取得上，都能主動交流，<br />
-          通過共享旅店類社群的平台，鼓勵旅客走出房間，認識新朋友，讓每次的共享旅程變的更開闊、盈滿而歸。
+          {{ choosen_branch[0]?.BRANCH_INTRO }}
         </div>
       </div>
       <div class="branch_facility" data-aos="fade-up">
@@ -316,7 +352,7 @@ export default {
         <div class="title">關注我們</div>
         <div class="facebook_iframe">
           <iframe
-            src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fkiwizhongzheng%3Flocale%3Dzh_TW&tabs=timeline&width=395&height=396&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId"
+            :src="choosen_branch[0]?.BRANCH_FACEBOOK_IFRAME"
             width="395"
             height="396"
             style="border: none; overflow: hidden"
@@ -376,7 +412,7 @@ export default {
   .about_branch {
     @apply pt-[52px] pb-[52px] w-[100%] h-[388px] bg-mainGreenColor flex flex-col items-center;
     .about_branch_content {
-      @apply pt-[40px] text-desktopBodyText text-baseWhiteColor;
+      @apply pt-[40px] px-[60px] text-desktopBodyText text-baseWhiteColor;
     }
   }
 
