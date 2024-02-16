@@ -72,7 +72,7 @@ export default {
   methods: {
     filter(e) {
       // 樣式設定
-      this.btns = document.querySelectorAll("#btn");
+      // this.btns = document.querySelectorAll("#btn");
       this.btns.forEach((item) => {
         item.classList.remove("active");
       });
@@ -96,6 +96,11 @@ export default {
     document.querySelector("footer").style.display = "block";
     // 控制後台 nav不顯示
     document.querySelector("#backend_nav").style.display = "none";
+    this.news_obj_filter = this.news_obj;
+    this.btns = document.querySelectorAll("#btn");
+    this.btns.forEach((item) => {
+      if (item.innerHTML === "全部") item.classList.add("active");
+    });
   },
 };
 </script>

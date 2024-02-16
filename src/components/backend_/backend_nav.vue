@@ -105,7 +105,7 @@ const handleClose = (key: string, keyPath: string[]) => {
       }
     }
     .log_out {
-      @apply absolute bottom-0 bg-baseGrayColor text-[1.5rem] text-baseWhiteColor py-[6px]  w-[100%];
+      @apply absolute bottom-0 bg-baseGrayColor text-[1.5rem] text-baseWhiteColor px-[12px] py-[6px] mt-[40px] w-[100%];
       &:hover {
         @apply bg-baseBlackColor;
       }

@@ -116,7 +116,7 @@ export default {
         <div class="img" data-aos="fade-right"></div>
         <div class="text" data-aos="fade-left">
           優質、簡約、舒適、平價<br />
-          奇異果快捷旅店是瑞石旅館事業集團旗下第一個獨立品牌，<br />
+          奇異果共享旅店是瑞石旅館事業集團旗下第一個獨立品牌，<br />
           「從旅客的角度出發，用心服務與旅客互動」，以年輕、舒活的清新風格，<br />
           打造出全新優質、簡約、舒適的平價旅館體驗。
         </div>
@@ -174,7 +174,7 @@ export default {
       </div>
       <div class="feature_b">
         <div class="text" data-aos="fade-right">
-          奇異果快捷旅店突破一般旅館傳統的框架，加入許多<br />時尚、簡約、舒適、便捷的舒活元素，創造出一間<br />全新旅店空間概念，提供旅客便捷、全方位、發自內心的<br />互動與服務，讓旅客一踏進KIWI
+          奇異果共享旅店突破一般旅館傳統的框架，加入許多<br />時尚、簡約、舒適、便捷的舒活元素，創造出一間<br />全新旅店空間概念，提供旅客便捷、全方位、發自內心的<br />互動與服務，讓旅客一踏進KIWI
           HOTEL，就能自然放鬆，<br />卸除旅途的疲憊，就如同KIWI奇異果的特色，小巧又饒富滋味。
         </div>
         <div class="img" data-aos="fade-left"></div>
