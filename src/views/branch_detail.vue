@@ -1,4 +1,6 @@
 <script>
+// 待辦事項 抓取http://localhost:3000/branch_facility獲取分行ID跟照片ID
+// 先判斷該方行有哪些照片ID，在從http://localhost:3000/pictures抓取圖片
 // 隨機獲取房間圖片 https://source.unsplash.com/featured/?bedroom
 import { Swiper, SwiperSlide } from "swiper/vue";
 
@@ -154,6 +156,8 @@ export default {
       branch_info_obj_api: [],
       branch_key: "",
       choosen_branch: [],
+      branch_pictures_obj_api: [],
+      choosen_branch_pictures: [],
     };
   },
   components: {
@@ -186,18 +190,39 @@ export default {
         this.show_which_branch();
       })
       .catch((error) => console.error(error));
-
+    // 取得圖片資料
+    fetch("http://localhost:3000/pictures")
+      .then((response) => {
+        return response.json();
+      })
+      .then((data) => {
+        console.log(data);
+        this.branch_pictures_obj_api = data;
+        this.branch_key = sessionStorage.getItem("branch_key");
+        this.show_which_branch_pictures();
+      })
+      .catch((error) => console.error(error));
     // 取得存在sessionStorage的資料(來自branch_info.vue)
 
     // console.log(this.branch_key);
     // 執行比對函數
   },
   methods: {
+    // 產生對應的旅店資訊物件
     show_which_branch() {
       this.choosen_branch = this.branch_info_obj_api.filter((branch) => {
         return branch.BRANCH_ID == this.branch_key;
       });
       console.log(this.choosen_branch);
+    },
+    // 產生對應的旅店封面照片物件
+    show_which_branch_pictures() {
+      this.choosen_branch_pictures = this.branch_pictures_obj_api.filter(
+        (pictures) => {
+          return pictures.PICTURES_ID == this.branch_key;
+        }
+      );
+      console.log(this.choosen_branch_pictures);
     },
   },
 };
@@ -211,7 +236,9 @@ export default {
       <div class="basic_info" data-aos="fade-up">
         <div
           class="basic_info_l"
-          :style="{ backgroundImage: `url(${img_tem1})` }"
+          :style="{
+            backgroundImage: `url(${choosen_branch_pictures[0]?.PICTURES})`,
+          }"
         ></div>
         <div class="basic_info_r">
           <div class="basic_info_title">

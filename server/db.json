@@ -913,5 +913,324 @@
       "BANNER_EFFECTIVE_TIME": "2024/2/12",
       "SORT": 5
     }
+  ],
+  "pictures": [
+    {
+      "PICTURES_ID": "B0001",
+      "PICTURES": "https://source.unsplash.com/featured/?bedroom",
+      "SERIAL_NUMBER": "0"
+    },
+    {
+      "PICTURES_ID": "B0002",
+      "PICTURES": "https://source.unsplash.com/featured/?bedroom",
+      "SERIAL_NUMBER": "0"
+    },
+    {
+      "PICTURES_ID": "B0003",
+      "PICTURES": "https://source.unsplash.com/featured/?bedroom",
+      "SERIAL_NUMBER": "0"
+    },
+    {
+      "PICTURES_ID": "B0004",
+      "PICTURES": "https://source.unsplash.com/featured/?bedroom",
+      "SERIAL_NUMBER": "0"
+    },
+    {
+      "PICTURES_ID": "B0005",
+      "PICTURES": "https://source.unsplash.com/featured/?bedroom",
+      "SERIAL_NUMBER": "0"
+    },
+    {
+      "PICTURES_ID": "B0006",
+      "PICTURES": "https://source.unsplash.com/featured/?bedroom",
+      "SERIAL_NUMBER": "0"
+    },
+    {
+      "PICTURES_ID": "B0007",
+      "PICTURES": "https://source.unsplash.com/featured/?bedroom",
+      "SERIAL_NUMBER": "0"
+    },
+    {
+      "PICTURES_ID": "B0008",
+      "PICTURES": "https://source.unsplash.com/featured/?bedroom",
+      "SERIAL_NUMBER": "0"
+    },
+    {
+      "PICTURES_ID": "B0009",
+      "PICTURES": "https://source.unsplash.com/featured/?bedroom",
+      "SERIAL_NUMBER": "0"
+    },
+    {
+      "PICTURES_ID": "FacilityPic0001",
+      "PICTURES": "https://source.unsplash.com/featured/?hotel",
+      "SERIAL_NUMBER": "0"
+    },
+    {
+      "PICTURES_ID": "FacilityPic0002",
+      "PICTURES": "https://source.unsplash.com/featured/?hotel",
+      "SERIAL_NUMBER": "1"
+    },
+    {
+      "PICTURES_ID": "FacilityPic0003",
+      "PICTURES": "https://source.unsplash.com/featured/?hotel",
+      "SERIAL_NUMBER": "2"
+    },
+    {
+      "PICTURES_ID": "FacilityPic0004",
+      "PICTURES": "https://source.unsplash.com/featured/?hotel",
+      "SERIAL_NUMBER": "3"
+    },
+    {
+      "PICTURES_ID": "FacilityPic0005",
+      "PICTURES": "https://source.unsplash.com/featured/?hotel",
+      "SERIAL_NUMBER": "4"
+    },
+    {
+      "PICTURES_ID": "FacilityPic0006",
+      "PICTURES": "https://source.unsplash.com/featured/?hotel",
+      "SERIAL_NUMBER": "0"
+    },
+    {
+      "PICTURES_ID": "FacilityPic0007",
+      "PICTURES": "https://source.unsplash.com/featured/?hotel",
+      "SERIAL_NUMBER": "1"
+    },
+    {
+      "PICTURES_ID": "FacilityPic0008",
+      "PICTURES": "https://source.unsplash.com/featured/?hotel",
+      "SERIAL_NUMBER": "2"
+    },
+    {
+      "PICTURES_ID": "FacilityPic0009",
+      "PICTURES": "https://source.unsplash.com/featured/?hotel",
+      "SERIAL_NUMBER": "3"
+    },
+    {
+      "PICTURES_ID": "FacilityPic0010",
+      "PICTURES": "https://source.unsplash.com/featured/?hotel",
+      "SERIAL_NUMBER": "4"
+    },
+    {
+      "PICTURES_ID": "FacilityPic0011",
+      "PICTURES": "https://source.unsplash.com/featured/?hotel",
+      "SERIAL_NUMBER": "0"
+    },
+    {
+      "PICTURES_ID": "FacilityPic0012",
+      "PICTURES": "https://source.unsplash.com/featured/?hotel",
+      "SERIAL_NUMBER": "1"
+    },
+    {
+      "PICTURES_ID": "FacilityPic0013",
+      "PICTURES": "https://source.unsplash.com/featured/?hotel",
+      "SERIAL_NUMBER": "2"
+    },
+    {
+      "PICTURES_ID": "FacilityPic0014",
+      "PICTURES": "https://source.unsplash.com/featured/?hotel",
+      "SERIAL_NUMBER": "3"
+    },
+    {
+      "PICTURES_ID": "FacilityPic0015",
+      "PICTURES": "https://source.unsplash.com/featured/?hotel",
+      "SERIAL_NUMBER": "4"
+    },
+    {
+      "PICTURES_ID": "FacilityPic0016",
+      "PICTURES": "https://source.unsplash.com/featured/?hotel",
+      "SERIAL_NUMBER": "0"
+    },
+    {
+      "PICTURES_ID": "FacilityPic0017",
+      "PICTURES": "https://source.unsplash.com/featured/?hotel",
+      "SERIAL_NUMBER": "1"
+    },
+    {
+      "PICTURES_ID": "FacilityPic0018",
+      "PICTURES": "https://source.unsplash.com/featured/?hotel",
+      "SERIAL_NUMBER": "2"
+    },
+    {
+      "PICTURES_ID": "FacilityPic0019",
+      "PICTURES": "https://source.unsplash.com/featured/?hotel",
+      "SERIAL_NUMBER": "3"
+    },
+    {
+      "PICTURES_ID": "FacilityPic0020",
+      "PICTURES": "https://source.unsplash.com/featured/?hotel",
+      "SERIAL_NUMBER": "4"
+    },
+    {
+      "PICTURES_ID": "FacilityPic0021",
+      "PICTURES": "https://source.unsplash.com/featured/?hotel",
+      "SERIAL_NUMBER": "0"
+    },
+    {
+      "PICTURES_ID": "FacilityPic0022",
+      "PICTURES": "https://source.unsplash.com/featured/?hotel",
+      "SERIAL_NUMBER": "1"
+    },
+    {
+      "PICTURES_ID": "FacilityPic0023",
+      "PICTURES": "https://source.unsplash.com/featured/?hotel",
+      "SERIAL_NUMBER": "2"
+    },
+    {
+      "PICTURES_ID": "FacilityPic0024",
+      "PICTURES": "https://source.unsplash.com/featured/?hotel",
+      "SERIAL_NUMBER": "3"
+    },
+    {
+      "PICTURES_ID": "FacilityPic0025",
+      "PICTURES": "https://source.unsplash.com/featured/?hotel",
+      "SERIAL_NUMBER": "4"
+    },
+    {
+      "PICTURES_ID": "FacilityPic0026",
+      "PICTURES": "https://source.unsplash.com/featured/?hotel",
+      "SERIAL_NUMBER": "0"
+    },
+    {
+      "PICTURES_ID": "FacilityPic0027",
+      "PICTURES": "https://source.unsplash.com/featured/?hotel",
+      "SERIAL_NUMBER": "1"
+    },
+    {
+      "PICTURES_ID": "FacilityPic0028",
+      "PICTURES": "https://source.unsplash.com/featured/?hotel",
+      "SERIAL_NUMBER": "2"
+    },
+    {
+      "PICTURES_ID": "FacilityPic0029",
+      "PICTURES": "https://source.unsplash.com/featured/?hotel",
+      "SERIAL_NUMBER": "3"
+    },
+    {
+      "PICTURES_ID": "FacilityPic0030",
+      "PICTURES": "https://source.unsplash.com/featured/?hotel",
+      "SERIAL_NUMBER": "4"
+    },
+    {
+      "PICTURES_ID": "FacilityPic0031",
+      "PICTURES": "https://source.unsplash.com/featured/?hotel",
+      "SERIAL_NUMBER": "0"
+    },
+    {
+      "PICTURES_ID": "FacilityPic0032",
+      "PICTURES": "https://source.unsplash.com/featured/?hotel",
+      "SERIAL_NUMBER": "1"
+    },
+    {
+      "PICTURES_ID": "FacilityPic0033",
+      "PICTURES": "https://source.unsplash.com/featured/?hotel",
+      "SERIAL_NUMBER": "2"
+    },
+    {
+      "PICTURES_ID": "FacilityPic0034",
+      "PICTURES": "https://source.unsplash.com/featured/?hotel",
+      "SERIAL_NUMBER": "3"
+    },
+    {
+      "PICTURES_ID": "FacilityPic0035",
+      "PICTURES": "https://source.unsplash.com/featured/?hotel",
+      "SERIAL_NUMBER": "4"
+    },
+    {
+      "PICTURES_ID": "FacilityPic0036",
+      "PICTURES": "https://source.unsplash.com/featured/?hotel",
+      "SERIAL_NUMBER": "0"
+    },
+    {
+      "PICTURES_ID": "FacilityPic0037",
+      "PICTURES": "https://source.unsplash.com/featured/?hotel",
+      "SERIAL_NUMBER": "1"
+    },
+    {
+      "PICTURES_ID": "FacilityPic0038",
+      "PICTURES": "https://source.unsplash.com/featured/?hotel",
+      "SERIAL_NUMBER": "2"
+    },
+    {
+      "PICTURES_ID": "FacilityPic0039",
+      "PICTURES": "https://source.unsplash.com/featured/?hotel",
+      "SERIAL_NUMBER": "3"
+    },
+    {
+      "PICTURES_ID": "FacilityPic0040",
+      "PICTURES": "https://source.unsplash.com/featured/?hotel",
+      "SERIAL_NUMBER": "4"
+    },
+    {
+      "PICTURES_ID": "FacilityPic0041",
+      "PICTURES": "https://source.unsplash.com/featured/?hotel",
+      "SERIAL_NUMBER": "0"
+    },
+    {
+      "PICTURES_ID": "FacilityPic0042",
+      "PICTURES": "https://source.unsplash.com/featured/?hotel",
+      "SERIAL_NUMBER": "1"
+    },
+    {
+      "PICTURES_ID": "FacilityPic0043",
+      "PICTURES": "https://source.unsplash.com/featured/?hotel",
+      "SERIAL_NUMBER": "2"
+    },
+    {
+      "PICTURES_ID": "FacilityPic0044",
+      "PICTURES": "https://source.unsplash.com/featured/?hotel",
+      "SERIAL_NUMBER": "3"
+    },
+    {
+      "PICTURES_ID": "FacilityPic0045",
+      "PICTURES": "https://source.unsplash.com/featured/?hotel",
+      "SERIAL_NUMBER": "4"
+    }
+  ],
+  "branch_facility_pictures": [
+    { "BRANCH_ID": "B0001", "BRANCH_FACILITY_PICTURES_ID": "FacilityPic0001" },
+    { "BRANCH_ID": "B0001", "BRANCH_FACILITY_PICTURES_ID": "FacilityPic0002" },
+    { "BRANCH_ID": "B0001", "BRANCH_FACILITY_PICTURES_ID": "FacilityPic0003" },
+    { "BRANCH_ID": "B0001", "BRANCH_FACILITY_PICTURES_ID": "FacilityPic0004" },
+    { "BRANCH_ID": "B0001", "BRANCH_FACILITY_PICTURES_ID": "FacilityPic0005" },
+    { "BRANCH_ID": "B0002", "BRANCH_FACILITY_PICTURES_ID": "FacilityPic0006" },
+    { "BRANCH_ID": "B0002", "BRANCH_FACILITY_PICTURES_ID": "FacilityPic0007" },
+    { "BRANCH_ID": "B0002", "BRANCH_FACILITY_PICTURES_ID": "FacilityPic0008" },
+    { "BRANCH_ID": "B0002", "BRANCH_FACILITY_PICTURES_ID": "FacilityPic0009" },
+    { "BRANCH_ID": "B0002", "BRANCH_FACILITY_PICTURES_ID": "FacilityPic0010" },
+    { "BRANCH_ID": "B0003", "BRANCH_FACILITY_PICTURES_ID": "FacilityPic0011" },
+    { "BRANCH_ID": "B0003", "BRANCH_FACILITY_PICTURES_ID": "FacilityPic0012" },
+    { "BRANCH_ID": "B0003", "BRANCH_FACILITY_PICTURES_ID": "FacilityPic0013" },
+    { "BRANCH_ID": "B0003", "BRANCH_FACILITY_PICTURES_ID": "FacilityPic0014" },
+    { "BRANCH_ID": "B0003", "BRANCH_FACILITY_PICTURES_ID": "FacilityPic0015" },
+    { "BRANCH_ID": "B0004", "BRANCH_FACILITY_PICTURES_ID": "FacilityPic0016" },
+    { "BRANCH_ID": "B0004", "BRANCH_FACILITY_PICTURES_ID": "FacilityPic0017" },
+    { "BRANCH_ID": "B0004", "BRANCH_FACILITY_PICTURES_ID": "FacilityPic0018" },
+    { "BRANCH_ID": "B0004", "BRANCH_FACILITY_PICTURES_ID": "FacilityPic0019" },
+    { "BRANCH_ID": "B0004", "BRANCH_FACILITY_PICTURES_ID": "FacilityPic0020" },
+    { "BRANCH_ID": "B0005", "BRANCH_FACILITY_PICTURES_ID": "FacilityPic0021" },
+    { "BRANCH_ID": "B0005", "BRANCH_FACILITY_PICTURES_ID": "FacilityPic0022" },
+    { "BRANCH_ID": "B0005", "BRANCH_FACILITY_PICTURES_ID": "FacilityPic0023" },
+    { "BRANCH_ID": "B0005", "BRANCH_FACILITY_PICTURES_ID": "FacilityPic0024" },
+    { "BRANCH_ID": "B0005", "BRANCH_FACILITY_PICTURES_ID": "FacilityPic0025" },
+    { "BRANCH_ID": "B0006", "BRANCH_FACILITY_PICTURES_ID": "FacilityPic0026" },
+    { "BRANCH_ID": "B0006", "BRANCH_FACILITY_PICTURES_ID": "FacilityPic0027" },
+    { "BRANCH_ID": "B0006", "BRANCH_FACILITY_PICTURES_ID": "FacilityPic0028" },
+    { "BRANCH_ID": "B0006", "BRANCH_FACILITY_PICTURES_ID": "FacilityPic0029" },
+    { "BRANCH_ID": "B0006", "BRANCH_FACILITY_PICTURES_ID": "FacilityPic0030" },
+    { "BRANCH_ID": "B0007", "BRANCH_FACILITY_PICTURES_ID": "FacilityPic0031" },
+    { "BRANCH_ID": "B0007", "BRANCH_FACILITY_PICTURES_ID": "FacilityPic0032" },
+    { "BRANCH_ID": "B0007", "BRANCH_FACILITY_PICTURES_ID": "FacilityPic0033" },
+    { "BRANCH_ID": "B0007", "BRANCH_FACILITY_PICTURES_ID": "FacilityPic0034" },
+    { "BRANCH_ID": "B0007", "BRANCH_FACILITY_PICTURES_ID": "FacilityPic0035" },
+    { "BRANCH_ID": "B0008", "BRANCH_FACILITY_PICTURES_ID": "FacilityPic0036" },
+    { "BRANCH_ID": "B0008", "BRANCH_FACILITY_PICTURES_ID": "FacilityPic0037" },
+    { "BRANCH_ID": "B0008", "BRANCH_FACILITY_PICTURES_ID": "FacilityPic0038" },
+    { "BRANCH_ID": "B0008", "BRANCH_FACILITY_PICTURES_ID": "FacilityPic0039" },
+    { "BRANCH_ID": "B0008", "BRANCH_FACILITY_PICTURES_ID": "FacilityPic0040" },
+    { "BRANCH_ID": "B0009", "BRANCH_FACILITY_PICTURES_ID": "FacilityPic0041" },
+    { "BRANCH_ID": "B0009", "BRANCH_FACILITY_PICTURES_ID": "FacilityPic0042" },
+    { "BRANCH_ID": "B0009", "BRANCH_FACILITY_PICTURES_ID": "FacilityPic0043" },
+    { "BRANCH_ID": "B0009", "BRANCH_FACILITY_PICTURES_ID": "FacilityPic0044" },
+    { "BRANCH_ID": "B0009", "BRANCH_FACILITY_PICTURES_ID": "FacilityPic0045" }
   ]
 }
