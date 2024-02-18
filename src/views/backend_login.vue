@@ -21,7 +21,7 @@ export default {
         </div>
       </div>
       <!-- 暫時停止頁面跳轉 -->
-      <button type="submit" @click.prevent>
+      <button type="button" >
         <RouterLink to="/backend_banner_manage">登入</RouterLink>
       </button>
     </form>

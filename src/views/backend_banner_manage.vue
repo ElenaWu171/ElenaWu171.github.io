@@ -5,7 +5,7 @@ export default {
     return {
       inp_title: "",
       inp_date: "",
-      inp_img: "",
+      inp_img_pic: "",
       inp_to_top: 0,
       tableData: [
         {
@@ -33,10 +33,13 @@ export default {
     };
   },
   methods: {
+    // 上傳圖片顯示
     showImage(e) {
-      // 上傳圖片顯示
+      // 圖片的資料
       const up_loag_url = e.target.files[0];
+      // 圖片的路徑
       this.$refs.blah.src = URL.createObjectURL(up_loag_url);
+      console.log(up_loag_url,this.$refs.blah.src);
     },
     // 刪除資料
     del(row) {
@@ -52,39 +55,49 @@ export default {
       console.log(row);
       this.inp_title = row.title;
       this.inp_date = row.date;
+      // 上傳的圖片縮圖
       this.$refs.blah.src = row.url;
-      // this.$refs.imageInput.value = "C:\\fakepath\\台中成功店.jpg";
+      // 上傳圖片的名稱
+      this.$refs.imageInput.src=row.url
       console.log(row.url);
-      console.log("file", this.$refs.imageInput.files);
+      console.log("file", this.$refs.imageInput.value);
       // C:\fakepath\台中成功店.jpg
+      // 怎麼把它帶進去，換個想法，把路徑帶進去呢?
+      // 瀏覽器不允許使用程式碼去直接帶入值到圖片上傳
+      // 改以顯示用戶已經上傳的圖片在旁邊
+      this.$refs.imageInput.value = ""
+     this.$refs.up_load_img_name.innerHTML = this.inp_img_pic
+     
     },
+    // 點擊上傳圖片後觸發
     handlechange(e) {
       this.showImage(e);
       this.getImageValue(e);
     },
 
     getRadioValue(e) {
-      // return e;
-      console.log("getRadioValue", e.target.id);
+      // console.log("getRadioValue", e.target.id);
       return (this.inp_to_top = e.target.id);
     },
     getImageValue(e) {
       console.log("getImageValue", e.target.value);
       // getImageValue C:\fakepath\飯店設施1.jpg
       let split_image_value = e.target.value.split("\\");
-      // console.log(split_image_value[split_image_value.length - 1]);
       // 獲取最後一個字串值
-      return (this.inp_img = split_image_value[split_image_value.length - 1]);
+      this.inp_img_pic = split_image_value[split_image_value.length - 1]
+      this.$refs.up_load_img_name.innerHTML =this.inp_img_pic
+      return this.inp_img_pic
     },
     add() {
       if (
         (this.inp_title === "") |
         (this.inp_date === "") |
-        (this.inp_img === "") |
+        (this.inp_img_pic === "") |
         (this.inp_to_top === "")
       )
         return;
       let new_obj = {
+        // id 赴值
         id: this.tableData.length
           ? Math.max(
               ...this.tableData.map((item) => {
@@ -92,10 +105,12 @@ export default {
               })
             ) + 1
           : 1,
+        // 上傳圖片的縮圖
         url: this.$refs.blah.src,
         title: this.inp_title,
         date: this.inp_date,
-        img: this.inp_img,
+        // 上傳圖片的名稱
+        img: this.inp_img_pic,
         to_top: this.inp_to_top,
       };
       this.tableData.unshift(new_obj);
@@ -105,8 +120,8 @@ export default {
         (this.inp_title = ""),
         (this.inp_date = ""),
         (this.$refs.blah.src = "none"),
-        (this.$refs.imageInput.value = "")
-        // (this.$refs.to_top.value = 0)
+        (this.$refs.imageInput.value = ""),
+        (this.$refs.up_load_img_name.innerHTML="圖片名稱")
       );
     },
   },
@@ -140,9 +155,18 @@ export default {
             required
             @change="handlechange"
           />
-          <img id="blah" src="#" alt="image" ref="blah" />
+          
+        </div>  
+      </div>
+      <div class="inp show_up_load">
+          <div class="title"> 已上傳圖片</div>
+          <div class="up_load_img_box ">
+            <img id="blah" src="#" alt="image" ref="blah" />
+          <div class="up_load_img_name" ref="up_load_img_name">圖片名稱</div>
         </div>
       </div>
+         
+          
       <div class="inp">
         <div class="title">置頂</div>
         <input
@@ -239,6 +263,9 @@ export default {
 
       #blah {
         @apply w-[160px] h-[90px] border-[2px] mt-[20px] border-baseGrayColor;
+      }
+      .up_load_img_box{
+        @apply flex flex-col items-center ;
       }
     }
     .btns {

@@ -1,6 +1,6 @@
 <script>
 // 待辦事項 抓取http://localhost:3000/branch_facility獲取分行ID跟照片ID
-// 先判斷該方行有哪些照片ID，在從http://localhost:3000/pictures抓取圖片
+// 先判斷該分行有哪些照片ID，在從http://localhost:3000/pictures抓取圖片
 // 隨機獲取房間圖片 https://source.unsplash.com/featured/?bedroom
 import { Swiper, SwiperSlide } from "swiper/vue";
 
@@ -158,6 +158,8 @@ export default {
       choosen_branch: [],
       branch_pictures_obj_api: [],
       choosen_branch_pictures: [],
+      branch_facility_pictures_obj_api:[],
+      branch_facility_pictures_id_obj:[]
     };
   },
   components: {
@@ -184,8 +186,9 @@ export default {
       })
       .then((data) => {
         // 順序 : 或去數據-> 獲取sessionStorage --> 篩選數據渲染畫面
-        console.log(data);
+        // console.log(data);
         this.branch_info_obj_api = data;
+         // 取得存在sessionStorage的資料(來自branch_info.vue)
         this.branch_key = sessionStorage.getItem("branch_key");
         this.show_which_branch();
       })
@@ -196,16 +199,26 @@ export default {
         return response.json();
       })
       .then((data) => {
-        console.log(data);
+        // console.log(data);
         this.branch_pictures_obj_api = data;
         this.branch_key = sessionStorage.getItem("branch_key");
         this.show_which_branch_pictures();
       })
       .catch((error) => console.error(error));
-    // 取得存在sessionStorage的資料(來自branch_info.vue)
+      // 取得分館圖片資料
+      // fetch("http://localhost:3000/branch_facility_pictures")
+      // .then((response) => {
+      //   return response.json();
+      // })
+      // .then((data) => {
+      //   console.log(data);
+      //   this.branch_facility_pictures_obj_api = data;
+      //   this.branch_key = sessionStorage.getItem("branch_key");
+      //   this.get_branch_pictures_id();
+      // })
+      // .catch((error) => console.error(error));
 
-    // console.log(this.branch_key);
-    // 執行比對函數
+   
   },
   methods: {
     // 產生對應的旅店資訊物件
@@ -213,7 +226,7 @@ export default {
       this.choosen_branch = this.branch_info_obj_api.filter((branch) => {
         return branch.BRANCH_ID == this.branch_key;
       });
-      console.log(this.choosen_branch);
+      // console.log(this.choosen_branch);
     },
     // 產生對應的旅店封面照片物件
     show_which_branch_pictures() {
@@ -222,8 +235,15 @@ export default {
           return pictures.PICTURES_ID == this.branch_key;
         }
       );
-      console.log(this.choosen_branch_pictures);
+      // console.log(this.choosen_branch_pictures);
     },
+    // 獲取對應的旅店的所有照片ID
+    get_branch_pictures_id(){
+      this.branch_facility_pictures_id_obj = this.branch_facility_pictures_obj_api.filter((picture)=>{
+        return picture.BRANCH_ID==this.branch_key
+      })
+      console.log(this.branch_facility_pictures_id_obj);
+    }
   },
 };
 </script>

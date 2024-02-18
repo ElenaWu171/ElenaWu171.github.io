@@ -1,0 +1,18 @@
+{
+    "banner_manage":[
+{"BANNER_ID":"Banner0001",
+"PICTURES_ID":"Banner0001",
+"BANNER_TITLE":"龍年橫幅圖",
+"BANNER_EFFECTIVE_TIME":"2024/2/8",
+"SORT":1,
+"PICTURES":""
+},
+{"BANNER_ID":"Banner0002",
+"PICTURES_ID":"Banner0002",
+"BANNER_TITLE":"新春特別優惠",
+"BANNER_EFFECTIVE_TIME":"2024/2/15",
+"SORT":2,
+"PICTURES":""
+}
+    ]
+}
