@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+import "element-plus/dist/index.css";
 import {
   Document,
   Menu as IconMenu,

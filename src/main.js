@@ -10,7 +10,7 @@ import "./assets/font.css";
 // import "./style.css";
 
 import ElementPlus from "element-plus";
-import "element-plus/dist/index.css";
+// import "element-plus/dist/index.css";
 
 import AOS from "aos";
 import "aos/dist/aos.css"; // You can also use <link> for styles
