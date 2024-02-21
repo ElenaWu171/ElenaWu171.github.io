@@ -8,9 +8,9 @@ import img_tem6 from "@/assets/img/general/img_tem6.jpg";
 import { Swiper, SwiperSlide } from "swiper/vue";
 import "animate.css";
 // Import Swiper styles
-// import "swiper/css";
-// import "swiper/css/pagination";
-// import "swiper/css/navigation";
+import "swiper/css";
+import "swiper/css/pagination";
+import "swiper/css/navigation";
 import comp_general_card from "@/components/general/comp_general_card.vue";
 // import required modules
 import { Autoplay, Pagination, Navigation } from "swiper/modules";
