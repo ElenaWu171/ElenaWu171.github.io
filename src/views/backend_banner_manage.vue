@@ -37,6 +37,7 @@ export default {
     showImage(e) {
       // 圖片的資料
       const up_loag_url = e.target.files[0];
+      console.log(up_loag_url);
       // 圖片的路徑
       this.$refs.blah.src = URL.createObjectURL(up_loag_url);
       console.log(up_loag_url,this.$refs.blah.src);

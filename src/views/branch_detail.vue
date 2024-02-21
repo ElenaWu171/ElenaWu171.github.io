@@ -159,7 +159,9 @@ export default {
       branch_pictures_obj_api: [],
       choosen_branch_pictures: [],
       branch_facility_pictures_obj_api:[],
-      branch_facility_pictures_id_obj:[]
+      branch_facility_pictures_id_obj:[],
+      branch_facility_info_obj_api:[],
+      branch_facility_info_id_obj:[]
     };
   },
   components: {
@@ -178,7 +180,7 @@ export default {
     document.querySelector("footer").style.display = "block";
     // 控制後台 nav不顯示
     document.querySelector("#backend_nav").style.display = "none";
-    // 取得資料
+    // 取得分館資料
     fetch("http://localhost:3000/branch")
       .then((response) => {
         // console.log(response);
@@ -190,7 +192,7 @@ export default {
         this.branch_info_obj_api = data;
          // 取得存在sessionStorage的資料(來自branch_info.vue)
         this.branch_key = sessionStorage.getItem("branch_key");
-        this.show_which_branch();
+        this.get_branch();
       })
       .catch((error) => console.error(error));
     // 取得圖片資料
@@ -202,47 +204,69 @@ export default {
         // console.log(data);
         this.branch_pictures_obj_api = data;
         this.branch_key = sessionStorage.getItem("branch_key");
-        this.show_which_branch_pictures();
+        this.get_branch_pictures();
       })
       .catch((error) => console.error(error));
-      // 取得分館圖片資料
-      // fetch("http://localhost:3000/branch_facility_pictures")
-      // .then((response) => {
-      //   return response.json();
-      // })
-      // .then((data) => {
-      //   console.log(data);
-      //   this.branch_facility_pictures_obj_api = data;
-      //   this.branch_key = sessionStorage.getItem("branch_key");
-      //   this.get_branch_pictures_id();
-      // })
-      // .catch((error) => console.error(error));
-
+      // 取得分館設備"圖片"資料
+      fetch("http://localhost:3000/branch_facility_pictures")
+      .then((response) => {
+        return response.json();
+      })
+      .then((data) => {
+        console.log(data);
+        this.branch_facility_pictures_obj_api = data;
+        this.branch_key = sessionStorage.getItem("branch_key");
+        this.get_branch_facility_pictures();
+      })
+      .catch((error) => console.error(error));
+      // 取得分館設備"文字"資料
+ fetch("http://localhost:3000/branch_facility")
+      .then((response) => {
+        return response.json();
+      })
+      .then((data) => {
+        console.log("分館設備文字資料",data);
+        this.branch_facility_info_obj_api = data;
+        this.branch_key = sessionStorage.getItem("branch_key");
+       
+        this.get_branch_facility_info();
+      })
+      .catch((error) => console.error(error));
    
   },
   methods: {
-    // 產生對應的旅店資訊物件
-    show_which_branch() {
+    // 獲取對應的旅店資訊物件
+    get_branch() {
       this.choosen_branch = this.branch_info_obj_api.filter((branch) => {
         return branch.BRANCH_ID == this.branch_key;
       });
-      // console.log(this.choosen_branch);
     },
-    // 產生對應的旅店封面照片物件
-    show_which_branch_pictures() {
+    // 獲取對應的旅店封面照片物件
+    get_branch_pictures() {
       this.choosen_branch_pictures = this.branch_pictures_obj_api.filter(
         (pictures) => {
           return pictures.PICTURES_ID == this.branch_key;
         }
       );
-      // console.log(this.choosen_branch_pictures);
     },
-    // 獲取對應的旅店的所有照片ID
-    get_branch_pictures_id(){
+    // 獲取對應的旅店的設施照片物件
+    get_branch_facility_pictures(){
       this.branch_facility_pictures_id_obj = this.branch_facility_pictures_obj_api.filter((picture)=>{
         return picture.BRANCH_ID==this.branch_key
       })
-      console.log(this.branch_facility_pictures_id_obj);
+    },
+    // 獲取對應的旅店的設施文字物件
+    get_branch_facility_info(){
+      // console.log(this.branch_facility_info_id_obj);
+      this.branch_facility_info_id_obj = this.branch_facility_info_obj_api.filter((info)=>{
+        return info.BRANCH_ID==this.branch_key 
+        
+            
+      })
+      // this.branch_facility_info_id_obj=this.branch_facility_info_id_obj.BRANCH_FACILITY_CONTENT
+      // 設備這邊要修正
+      this.branch_facility_info_id_obj=this.branch_facility_info_id_obj[0].BRANCH_FACILITY_CONTENT
+      console.log(this.branch_facility_info_id_obj);
     }
   },
 };
@@ -297,16 +321,17 @@ export default {
               class="mySwiper branch_facility_mySwiper"
             >
               <swiper-slide
-                v-for="item in imgs"
+                v-for="item in branch_facility_pictures_id_obj"
                 class="facility_img"
                 :key="item.id"
-                :style="{ backgroundImage: `url(${item})` }"
+                :style="{ backgroundImage: `url(${item.PICTURES})` }"
               ></swiper-slide>
             </swiper>
           </div>
           <div class="branch_facility_b_r">
             <ul class="facilities_box">
-              <li v-for="item in facilities" :key="item.id">
+              <li v-for="item in branch_facility_info_id_obj" 
+              :key="item.id">
                 {{ item }}
               </li>
             </ul>

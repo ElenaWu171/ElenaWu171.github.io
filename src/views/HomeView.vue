@@ -105,7 +105,7 @@ export default {
       </swiper>
       <div class="welcome" data-aos="zoom-in-up">
         <p>歡迎光臨</p>
-        <p>奇異果快捷旅店</p>
+        <p>奇異果青年旅店</p>
       </div>
     </div>
     <div class="about_kiwi">
