@@ -143,7 +143,7 @@ export default defineComponent({
   .card_t {
     @apply flex w-[100%] h-[600px];
     .card_t_l {
-      @apply flex-1  bg-[yellow];
+      @apply flex-1  ;
       #gallery {
         @apply w-[100%];
         .carousel__item {
