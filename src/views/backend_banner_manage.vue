@@ -38,6 +38,7 @@ export default {
     },
     // 刪除資料
     del(row) {
+      console.log(row);
       fetch(`http://localhost:3001/banner_manage/${row.id}`
           ,{ 
             method:"DELETE",
@@ -49,8 +50,6 @@ export default {
       // console.log(row);
 
       this.tableData = this.tableData.filter((item) => {
-        // console.log(item.id);
-        // console.log(row.id);
         return item.id !== row.id;
       });
     },
