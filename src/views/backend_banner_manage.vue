@@ -1,5 +1,4 @@
 <script>
-// 剩下編輯的url
 export default {
   data() {
     return {
@@ -18,21 +17,21 @@ export default {
     };
   },
 
-  
   methods: {
-    // 點擊上傳圖片後觸發
+    // 上傳圖片觸發以函式
     handlechange(e) {
+      // 顯示上傳圖片
       this.showImage(e);
+      // 獲取圖片名稱
       this.getImageValue(e);
     },
 
-    // 上傳圖片顯示
+    // 顯示上傳圖片
     showImage(e) {
-      // 圖片的資料
+      // 取得圖片的資料
       const up_load_url = e.target.files[0];
       // 圖片的路徑
       this.$refs.blah.src = URL.createObjectURL(up_load_url);
-      //console.log(this.up_load_url,this.$refs.blah.src);
       // 獲得圖片的base64
       this.imgToBase64(up_load_url)
     },
@@ -56,12 +55,11 @@ export default {
     // 編輯資料
     edit(row) {
       console.log(row);
-      // this.id = row.id;
       this.inp_title = row.title;
       this.inp_date = row.date;
-      // 上傳的圖片縮圖
+      // 圖片縮圖
       this.$refs.blah.src = row.base64;
-      // 上傳圖片的名稱
+      // 圖片名稱
       this.$refs.up_load_img_name.innerHTML = row.img_name
       //  清除前次上傳時的圖片名稱
       document.querySelector(".inp_img").value = ""
@@ -79,9 +77,9 @@ export default {
       // getImageValue C:\fakepath\飯店設施1.jpg
       let split_image_value = e.target.value.split("\\");
       // 獲取最後一個字串值為圖片名稱
-      const inp_img_pic = split_image_value[split_image_value.length - 1]
-      this.$refs.up_load_img_name.innerHTML =inp_img_pic
-      return inp_img_pic
+      this.inp_img_name = split_image_value[split_image_value.length - 1]
+      this.$refs.up_load_img_name.innerHTML = this.inp_img_name
+      return  this.inp_img_name
     },
 
     add(edit_id) {
@@ -90,7 +88,7 @@ export default {
       if (
         (this.inp_title === "") |
         (this.inp_date === "") |
-        (this.inp_img_pic === "") |
+        (this.inp_img_name === "") |
         (this.inp_to_top === "")
       )
         return;
@@ -103,7 +101,7 @@ export default {
             title: this.inp_title,
             date: this.inp_date,
             // 上傳圖片的名稱
-            img_name: this.inp_img_pic,
+            img_name: this.inp_img_name,
             // 是否置頂
             to_top: this.inp_to_top,
             // 圖片base64
@@ -136,7 +134,7 @@ export default {
         title: this.inp_title,
         date: this.inp_date,
         // 上傳圖片的名稱
-        img_name: this.inp_img_pic,
+        img_name: this.inp_img_name,
         // 是否置頂
         to_top: this.inp_to_top,
         // 圖片base64
@@ -144,6 +142,7 @@ export default {
 
         };
          // 目前先手動增加資料
+         console.log(new_obj);
         this.tableData.push(new_obj);
 
         // 2-2. 把資料發送到資料庫

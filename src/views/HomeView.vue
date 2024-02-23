@@ -54,6 +54,8 @@ export default {
           belong: "台中成功店",
         },
       ],
+      banner_obj_api:[],
+    
       // off_footer: false,
     };
   },
@@ -67,6 +69,17 @@ export default {
     document.querySelector("footer").style.display = "block";
     // 控制後台 nav不顯示
     document.querySelector("#backend_nav").style.display = "none";
+    // 取得banner API資料
+    fetch("http://localhost:3001/banner_manage",
+    {
+      method:"GET",
+    })
+    .then(res=>res.json())
+    .then(data=>{
+      console.log(data);
+      this.banner_obj_api=data
+      
+    })
   },
 
   setup() {
@@ -91,14 +104,14 @@ export default {
         }"
         :navigation="true"
         :modules="modules"
-        :initialSlide="3"
+        :initialSlide="1"
         class="mySwiper"
       >
         <swiper-slide
-          v-for="item in imgs"
+          v-for="item in banner_obj_api"
           :key="item.id"
           class="banner"
-          :style="{ backgroundImage: `url(${item})` }"
+          :style="{ backgroundImage: `url(${item.base64})` }"
         ></swiper-slide>
         <!-- <swiper-slide class="banner">Slide 2</swiper-slide
         ><swiper-slide class="banner">Slide 3</swiper-slide>-->

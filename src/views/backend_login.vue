@@ -27,7 +27,7 @@ export default {
         </div>
       </div>
     
-      <button type="submit" @click=login_confirm()>
+      <button type="button" @click=login_confirm()>
         <RouterLink to="/backend_banner_manage">登入</RouterLink>
       </button>
     </form>
