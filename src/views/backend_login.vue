@@ -3,6 +3,12 @@ export default {
   mounted() {
     document.querySelector("footer").style.display = "none";
     document.querySelector("#backend_nav").style.display = "none";
+  }
+  // 發送API 驗證照號密碼正確性
+  ,methods:{
+    login_confirm(){
+      console.log("發送API給後端驗證");
+    }
   },
 };
 </script>
@@ -20,8 +26,8 @@ export default {
           <input class="password" type="password" required />
         </div>
       </div>
-      <!-- 暫時停止頁面跳轉 -->
-      <button type="button" >
+    
+      <button type="submit" @click=login_confirm()>
         <RouterLink to="/backend_banner_manage">登入</RouterLink>
       </button>
     </form>

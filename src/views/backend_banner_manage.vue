@@ -3,93 +3,91 @@
 export default {
   data() {
     return {
+      // 儲存圖片轉換後的base64
+      img_base64:"",
+      // 輸入欄位-title
       inp_title: "",
+      // 輸入欄位-日期(yyyy-mm-dd)
       inp_date: "",
-      inp_img_pic: "",
+      // 是否置頂
       inp_to_top: 0,
-      tableData: [
-        {
-          id: 3,
-          title: "龍年恭賀",
-          date: "2016-05-03",
-          img: "龍年恭賀圖.png",
-          to_top: 0,
-        },
-        {
-          id: 2,
-          title: "標題 1",
-          date: "2016-05-03",
-          img: "圖片1.png",
-          to_top: 0,
-        },
-        {
-          id: 1,
-          title: "標題 2",
-          date: "2016-05-03",
-          img: "圖片2.png",
-          to_top: 0,
-        },
-      ],
+      // 儲存API回傳的資料
+      tableData:[],
+      // 判斷是否為新資料
+      edit_id:0
     };
   },
-  methods: {
-    // 上傳圖片顯示
-    showImage(e) {
-      // 圖片的資料
-      const up_loag_url = e.target.files[0];
-      console.log(up_loag_url);
-      // 圖片的路徑
-      this.$refs.blah.src = URL.createObjectURL(up_loag_url);
-      console.log(up_loag_url,this.$refs.blah.src);
-    },
-    // 刪除資料
-    del(row) {
-      console.log(row);
 
-      this.tableData = this.tableData.filter((item) => {
-        console.log(item.id);
-        console.log(row.id);
-        return item.id !== row.id;
-      });
-    },
-    edit(row) {
-      console.log(row);
-      this.inp_title = row.title;
-      this.inp_date = row.date;
-      // 上傳的圖片縮圖
-      this.$refs.blah.src = row.url;
-      // 上傳圖片的名稱
-      this.$refs.imageInput.src=row.url
-      console.log(row.url);
-      console.log("file", this.$refs.imageInput.value);
-      // C:\fakepath\台中成功店.jpg
-      // 怎麼把它帶進去，換個想法，把路徑帶進去呢?
-      // 瀏覽器不允許使用程式碼去直接帶入值到圖片上傳
-      // 改以顯示用戶已經上傳的圖片在旁邊
-      this.$refs.imageInput.value = ""
-     this.$refs.up_load_img_name.innerHTML = this.inp_img_pic
-     
-    },
+  
+  methods: {
     // 點擊上傳圖片後觸發
     handlechange(e) {
       this.showImage(e);
       this.getImageValue(e);
     },
 
+    // 上傳圖片顯示
+    showImage(e) {
+      // 圖片的資料
+      const up_load_url = e.target.files[0];
+      // 圖片的路徑
+      this.$refs.blah.src = URL.createObjectURL( up_load_url);
+      console.log(this.up_load_url,this.$refs.blah.src);
+      // 獲得圖片的base64
+      this.imgToBase64(up_load_url)
+    },
+    // 刪除資料
+    del(row) {
+      fetch(`http://localhost:3001/banner_manage/${row.id}`
+          ,{ 
+            method:"DELETE",
+          })
+          .then(res=>res.json())
+          .catch(error => console.error('Error:', error))
+
+      
+      // console.log(row);
+
+      this.tableData = this.tableData.filter((item) => {
+        // console.log(item.id);
+        // console.log(row.id);
+        return item.id !== row.id;
+      });
+    },
+    // 編輯資料
+    edit(row) {
+      console.log(row);
+      // this.id = row.id;
+      this.inp_title = row.title;
+      this.inp_date = row.date;
+      // 上傳的圖片縮圖
+      this.$refs.blah.src = row.base64;
+      // 上傳圖片的名稱
+      this.$refs.up_load_img_name.innerHTML = row.img_name
+      //  清除前次上傳時的圖片名稱
+      document.querySelector(".inp_img").value = ""
+      this.edit_id = row.id
+      this.base64 = row.base64
+    },
+
     getRadioValue(e) {
       // console.log("getRadioValue", e.target.id);
       return (this.inp_to_top = e.target.id);
     },
+
     getImageValue(e) {
-      console.log("getImageValue", e.target.value);
+      // console.log("getImageValue", e.target.value);
       // getImageValue C:\fakepath\飯店設施1.jpg
       let split_image_value = e.target.value.split("\\");
-      // 獲取最後一個字串值
-      this.inp_img_pic = split_image_value[split_image_value.length - 1]
-      this.$refs.up_load_img_name.innerHTML =this.inp_img_pic
-      return this.inp_img_pic
+      // 獲取最後一個字串值為圖片名稱
+      const inp_img_pic = split_image_value[split_image_value.length - 1]
+      this.$refs.up_load_img_name.innerHTML =inp_img_pic
+      return inp_img_pic
     },
-    add() {
+
+    add(edit_id) {
+      // console.log(edit_id);
+      // 判斷資料是否填寫完整
       if (
         (this.inp_title === "") |
         (this.inp_date === "") |
@@ -97,7 +95,41 @@ export default {
         (this.inp_to_top === "")
       )
         return;
-      let new_obj = {
+        // 檢查id在tabledata內是否存在，存在-->更新，不存在-->新增
+        // if(this.tableData.id.includes(edit_id)){
+        //   // 更新資料
+        //   this.tableData
+        // }
+        const data_exist = this.tableData.some(item => Number(item.id) == Number(edit_id))
+        if(data_exist){
+          // 1. 更新原資料
+          console.log("更新原資料");
+          let update_obj={
+            title: this.inp_title,
+            date: this.inp_date,
+            // 上傳圖片的名稱
+            img_name: this.inp_img_pic,
+            // 是否置頂
+            to_top: this.inp_to_top,
+            // 圖片base64
+            base64: this.base64,
+          }
+          console.log(update_obj);
+          // 1-1. 找到要更新的資料
+          fetch(`http://localhost:3001/banner_manage/${edit_id}`
+          ,{ 
+            method:"PUT",
+            body:JSON.stringify(update_obj)
+          })
+          .then(res=>res.json())
+          .catch(error => console.error('Error:', error))
+
+        }
+        else{
+          console.log("新增到資料庫");
+        // 2. 創建新資料-->把資料發送到資料庫
+        // 2-1. 創建新資料
+        let new_obj = {  
         // id 赴值
         id: this.tableData.length
           ? Math.max(
@@ -106,16 +138,44 @@ export default {
               })
             ) + 1
           : 1,
-        // 上傳圖片的縮圖
-        url: this.$refs.blah.src,
         title: this.inp_title,
         date: this.inp_date,
         // 上傳圖片的名稱
-        img: this.inp_img_pic,
+        img_name: this.inp_img_pic,
+        // 是否置頂
         to_top: this.inp_to_top,
-      };
-      this.tableData.unshift(new_obj);
-    },
+        // 圖片base64
+        base64: this.img_base64
+
+        };
+         // 目前先手動增加資料
+        this.tableData.push(new_obj);
+
+        // 2-2. 把資料發送到資料庫
+        // 遇到問題 --> 資料無法更新回post.json 但post正常運行
+        // https://github.com/typicode/json-server/issues/710
+        fetch("http://localhost:3001/banner_manage",{
+          method:"POST",
+          headers: {
+              'Content-Type': 'application/json',
+            },
+          body: JSON.stringify(new_obj),
+        })
+        .then((res)=>res.json())
+        .then((data)=>{
+          console.log(data)
+          
+        })
+        .catch(error => {
+        console.error('Error:', error);
+        });
+      
+        }
+        // 3. 重新渲染介面，要學vuex或Vuex
+        // 目前先手動增加資料
+       
+       },
+    
     clear() {
       return (
         (this.inp_title = ""),
@@ -125,11 +185,32 @@ export default {
         (this.$refs.up_load_img_name.innerHTML="圖片名稱")
       );
     },
+    // 將圖片轉成base64
+      imgToBase64(file){
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload =  ()=>{
+        // console.log("base64",reader.result);
+        this.img_base64=reader.result
+        console.log("產生新的base64");
+        };
+      reader.onerror = (error)=> {
+      console.log('Error: ', error);
+   };
+    }
   },
-
   mounted() {
     document.querySelector("footer").style.display = "none";
     document.querySelector("#backend_nav").style.display = "block";
+    fetch("http://localhost:3001/banner_manage")
+    .then((res)=>{
+      console.log(res)
+      return res.json()})
+    .then((data)=>{
+      console.log(data)
+      return (this.tableData=data)
+    })
+    .catch((err)=>console.log(err));
   },
 };
 </script>
@@ -193,17 +274,20 @@ export default {
         <label for="false">否，依照上架日期排序</label><br />
       </div>
       <div class="btns">
-        <button type="submit" @click="add" @click.prevent>送出</button>
+        <button type="button" @click="add(edit_id)" @click.prevent>送出</button>
         <button type="button" @click="clear">清除</button>
       </div>
     </form>
     <div class="table">
       <el-table :data="tableData" style="width: 100%">
         <el-table-column
-          prop="id"
           label="序號"
-          :style="{ minWidth: '10%', maxWidth: '10%' }"
-        />
+          :style="{ minWidth: '10%', maxWidth: '10%' }">
+          <!--等同 v-for="(item, index) in items" -->
+          <template v-slot="scope">
+            {{ scope.$index + 1 }}
+        </template>
+      </el-table-column>
         <el-table-column
           prop="title"
           label="標題名稱"
@@ -215,10 +299,20 @@ export default {
           :style="{ minWidth: '10%', maxWidth: '10%' }"
         />
         <el-table-column
-          prop="img"
-          label="圖片"
+          prop="img_name"
+          label="圖名"
           :style="{ minWidth: '10%', maxWidth: '10%' }"
         />
+        <el-table-column
+          prop=""
+          label="縮圖"
+          :style="{ minWidth: '10%', maxWidth: '10%' }"
+        >
+        <!-- 讓element+呈現圖片方法 -->
+        <template v-slot="scope">
+          <img :src="scope.row.base64"/>
+        </template>
+      </el-table-column>
         <el-table-column
           prop="to_top"
           label="置頂"
