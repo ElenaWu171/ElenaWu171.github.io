@@ -31,8 +31,8 @@ export default {
       // 圖片的資料
       const up_load_url = e.target.files[0];
       // 圖片的路徑
-      this.$refs.blah.src = URL.createObjectURL( up_load_url);
-      console.log(this.up_load_url,this.$refs.blah.src);
+      this.$refs.blah.src = URL.createObjectURL(up_load_url);
+      //console.log(this.up_load_url,this.$refs.blah.src);
       // 獲得圖片的base64
       this.imgToBase64(up_load_url)
     },
@@ -95,10 +95,6 @@ export default {
       )
         return;
         // 檢查id在tabledata內是否存在，存在-->更新，不存在-->新增
-        // if(this.tableData.id.includes(edit_id)){
-        //   // 更新資料
-        //   this.tableData
-        // }
         const data_exist = this.tableData.some(item => Number(item.id) == Number(edit_id))
         if(data_exist){
           // 1. 更新原資料
@@ -111,7 +107,7 @@ export default {
             // 是否置頂
             to_top: this.inp_to_top,
             // 圖片base64
-            base64: this.base64,
+            base64: this.img_base64,
           }
           console.log(update_obj);
           // 1-1. 找到要更新的資料
@@ -172,7 +168,8 @@ export default {
         }
         // 3. 重新渲染介面，要學vuex或Vuex
         // 目前先手動增加資料
-       
+        //  4. 清除
+        this.clear()
        },
     
     clear() {
