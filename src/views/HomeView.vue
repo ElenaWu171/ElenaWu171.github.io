@@ -80,6 +80,7 @@ export default {
       this.banner_obj_api=data
       
     })
+    .catch((error=>console.log(error)))
   },
 
   setup() {
@@ -288,12 +289,12 @@ export default {
   .about_kiwi_b {
     @apply flex justify-center w-[100%] h-[312px] bg-mainGreenColor mt-[100px];
     .img {
-      @apply relative mt-[-5%] mr-[45px] w-[448px] h-[367px] bg-[url("@/assets/img/home_view/img_about_kiwi.jpg")] bg-cover bg-no-repeat border-mainYellowColor border-[10px] rounded-[50%];
+      @apply relative mt-[-2%] mr-[45px] w-[448px] h-[367px] bg-[url("@/assets/img/home_view/img_about_kiwi.jpg")] bg-cover bg-no-repeat border-mainYellowColor border-[10px] rounded-[50%];
       &::before {
         content: "";
         display: inline-block;
         position: absolute;
-        top: -95px;
+        top: -80px;
         left: 20px;
         width: 160px;
         height: 108px;
