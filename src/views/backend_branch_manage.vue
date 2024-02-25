@@ -253,6 +253,7 @@ export default {
           v-model="inp_branch_name"
         >
           <option value="" disabled>--請選擇--</option>
+          <option >全館適用</option>
           <option >桃園中壢車站店</option>
           <option >台中站前一館</option>
           <option >台中站前二館</option>

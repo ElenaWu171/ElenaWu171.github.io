@@ -54,6 +54,7 @@ export default {
           belong: "台中成功店",
         },
       ],
+      branch_manage_obj_api:[],
       banner_obj_api:[],
     
       // off_footer: false,
@@ -81,6 +82,18 @@ export default {
       
     })
     .catch((error=>console.log(error)))
+    // 取得最新消息 API資料
+    fetch("http://localhost:3001/branch_manage",
+    {
+      method:"GET"
+    })
+    .then(res=>res.json())
+    .then(data=>{
+      console.log(data);
+    
+     this.branch_manage_obj_api= data.filter((item)=>item.type==='最新消息')
+     console.log(this.branch_manage_obj_api);
+    })
   },
 
   setup() {
@@ -140,29 +153,9 @@ export default {
       <div class="news">
         <div class="title">最新消息</div>
         <div class="content" data-aos="fade-down">
-          <!-- <comp_general_card class="hvr-grow cursor-pointer">
-       
-            <template v-slot:title> 旅店發行之住宿優惠很豐富 </template>
-            <template v-slot:content>
-              一、本商品（服務）禮劵已加入由台灣省旅館商
-            </template>
-            <template v-slot:custom> 2024/1/27 </template>
-          </comp_general_card>
-          <comp_general_card class="hvr-grow cursor-pointer">
-            <template v-slot:title> ❤全新裝潢~超優會活動來</template>
-            <template v-slot:content> 無 </template>
-            <template v-slot:custom> 2024/1/2 </template>
-          </comp_general_card>
-          <comp_general_card class="hvr-grow cursor-pointer">
-            <template v-slot:title> KIWI高雄九如店最大優惠活動</template>
-            <template v-slot:content>
-              優惠方案不適用網路訂房及優惠不得併用哦
-            </template>
-            <template v-slot:custom> 2023/9/30 </template>
-          </comp_general_card> -->
           <comp_general_card
-            v-for="item in news_obj"
-            :imageUrl="item.img"
+            v-for="item in branch_manage_obj_api.slice(0, 3)"
+            :imageUrl="item.base64"
             :pop_up_title="item.title"
             :pop_up_content="item.content"
             :key="item.id"
@@ -176,7 +169,7 @@ export default {
               {{ item.date }}
             </template>
             <template v-slot:belong_branch>
-              {{ item.belong }}
+              {{ item.branch_name }}
             </template>
           </comp_general_card>
         </div>
