@@ -52,7 +52,7 @@ export default {
     <div class="card_b">
       <div class="card_b_l" v-if="card_b_l_flag">
         <!-- google 或 日期 -->
-        <slot name="custom">google map</slot>
+        <slot name="custom">日期</slot>
       </div>
       <div class="card_b_r" @click="pop_up()">
         <slot name="more">more</slot>

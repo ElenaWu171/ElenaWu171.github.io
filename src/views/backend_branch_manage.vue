@@ -6,39 +6,93 @@ export default {
       // option中文名稱
       inp_branch_name: "",
       // option代碼(value)
-      inp_branch_name_value: "",
+      // inp_branch_name_value: "",
       // option中文名稱
       inp_type: "",
       // option代碼(value)
-      inp_type_value: "",
+      // inp_type_value: "",
+    // 儲存圖片轉換後的base64
+      img_base64:"",
+      // 輸入欄位-title
       inp_title: "",
-      inp_content: "",
+      // 輸入欄位-日期(yyyy-mm-dd)
       inp_date: "",
-      inp_googlemap_url: "",
-      inp_img: "",
+      // 是否置頂
       inp_to_top: 0,
+      // 儲存API回傳的資料
+      tableData:[],
+      // 判斷是否為新資料
+      edit_id:0,
+      inp_content:""
 
-      tableData: [
-        {
-          id: 1,
-          inp_branch_name: "桃園中壢車站店",
-          inp_branch_name_value: "B0001",
-          inp_type: "媒體曝光",
-          inp_type_value: "media",
-          inp_title: "知名YT推薦",
-          inp_content:
-            "當地最迷人的民宿，這裡有舒適的空間、獨特的設計和親切的服務。在這片寧靜的角落，你能感受到濃厚的當地風情，品味到每一個精心準備的瞬間。絕對是悠閒假期的完美選擇，一定讓你流連忘返，愛上這片獨特的小天地。",
-          inp_date: "2016-05-03",
-          inp_googlemap_url: "https://maps.app.goo.gl/wN7w5dQ8nrbAGVdg6",
-          inp_img: "龍年恭賀圖.png",
-          inp_img_url: "",
-          inp_to_top: 0,
-        },
-      ],
+      
     };
   },
   methods: {
-    add() {
+    // 上傳圖片觸發以函式
+    handlechange(e) {
+      // 顯示上傳圖片
+      this.showImage(e);
+      // 獲取圖片名稱
+      this.getImageValue(e);
+    },
+     // 顯示上傳圖片
+     showImage(e) {
+      // 取得圖片的資料
+      const up_load_url = e.target.files[0];
+      // 圖片的路徑
+      this.$refs.blah.src = URL.createObjectURL(up_load_url);
+      console.log(up_load_url);
+      // 獲得圖片的base64
+      this.imgToBase64(up_load_url)
+    },
+    // 刪除資料
+    del(row) {
+      console.log(row);
+      fetch(`http://localhost:3001/branch_manage/${row.id}`
+          ,{ 
+            method:"DELETE",
+          })
+          .then(res=>res.json())
+          .catch(error => console.error('Error:', error))
+          // 前台顯示
+      this.tableData = this.tableData.filter((item) => {
+        return item.id !== row.id;
+      });
+    },
+    // 編輯資料
+    edit(row) {
+      console.log(row);
+      this.inp_branch_name= row.branch_name;
+      this.inp_type = row.type;
+      this.inp_title = row.title;
+      this.inp_date = row.date;
+      this.inp_content= row.content;
+      // 圖片縮圖
+      this.$refs.blah.src = row.base64;
+      // 圖片名稱
+      this.$refs.up_load_img_name.innerHTML = row.img_name
+      //  清除前次上傳時的圖片名稱
+      document.querySelector(".inp_img").value = ""
+      this.edit_id = row.id
+      this.base64 = row.base64
+    },
+    getRadioValue(e) {
+      // console.log("getRadioValue", e.target.id);
+      return (this.inp_to_top = e.target.id);
+    },
+
+    getImageValue(e) {
+      // console.log("getImageValue", e.target.value);
+      // getImageValue C:\fakepath\飯店設施1.jpg
+      let split_image_value = e.target.value.split("\\");
+      // 獲取最後一個字串值為圖片名稱
+      this.inp_img_name = split_image_value[split_image_value.length - 1]
+      this.$refs.up_load_img_name.innerHTML = this.inp_img_name
+      return  this.inp_img_name
+    },
+
+    add(edit_id) {
       if (
         (this.inp_branch_name === "") |
         (this.inp_type === "") |
@@ -48,8 +102,42 @@ export default {
         (this.inp_to_top === "")
       )
         return;
-      console.log(this.inp_branch_name, this.inp_branch_name, this.inp_title);
-      let new_obj = {
+        // 檢查id在tabledata內是否存在，存在-->更新，不存在-->新增
+        const data_exist = this.tableData.some(item => Number(item.id) == Number(edit_id))
+        if(data_exist){
+          // 1. 更新原資料
+          console.log("更新原資料");
+          let update_obj={
+            branch_name:this.inp_branch_name,
+            type:this.inp_type,
+            title: this.inp_title,
+            date: this.inp_date,
+            // 上傳圖片的名稱
+            img_name: this.inp_img_name,
+            // 是否置頂
+            to_top: this.inp_to_top,
+            // 圖片base64
+            base64: this.img_base64,
+            content: this.inp_content
+          }
+          console.log(update_obj);
+          // 1-1. 找到要更新的資料
+          fetch(`http://localhost:3001/banner_manage/${edit_id}`
+          ,{ 
+            method:"PUT",
+            body:JSON.stringify(update_obj)
+          })
+          .then(res=>res.json())
+          .catch(error => console.error('Error:', error))
+
+        }
+        else{
+          console.log("新增到資料庫");
+         
+        // 2. 創建新資料-->把資料發送到資料庫
+        // 2-1. 創建新資料
+        let new_obj = {  
+        // id 赴值
         id: this.tableData.length
           ? Math.max(
               ...this.tableData.map((item) => {
@@ -57,84 +145,96 @@ export default {
               })
             ) + 1
           : 1,
+            branch_name:this.inp_branch_name,
+            type:this.inp_type,
+            title: this.inp_title,
+            date: this.inp_date,
+            // 上傳圖片的名稱
+            img_name: this.inp_img_name,
+            // 是否置頂
+            to_top: this.inp_to_top,
+            // 圖片base64
+            base64: this.img_base64,
+            content: this.inp_content
 
-        inp_branch_name: this.inp_branch_name,
-        inp_branch_name_value: this.$refs.inp_branch_name.value,
-        inp_type: this.inp_branch_name,
-        inp_type_value: this.$refs.inp_type.value,
-        inp_title: this.inp_title,
-        inp_content: this.inp_content,
-        inp_date: this.inp_date,
-        inp_googlemap_url: this.inp_googlemap_url,
-        inp_img: this.inp_img,
-        inp_img_url: this.$refs.blah.src,
-        inp_to_top: this.inp_to_top,
-      };
-      this.tableData.unshift(new_obj);
-    },
-    clear() {
+        };
+         // 目前先手動增加資料
+         console.log(new_obj);
+        this.tableData.push(new_obj);
+
+        // 2-2. 把資料發送到資料庫
+        // 遇到問題 --> 資料無法更新回post.json 但post正常運行
+        // https://github.com/typicode/json-server/issues/710
+        fetch("http://localhost:3001/branch_manage",{
+          method:"POST",
+          headers: {
+              'Content-Type': 'application/json',
+            },
+          body: JSON.stringify(new_obj),
+        })
+        .then((res)=>res.json())
+        .then((data)=>{
+          console.log(data)
+          
+        })
+        .catch(error => {
+        console.error('Error:', error);
+        });
+      
+        }
+        // 3. 重新渲染介面，要學vuex或Vuex
+        // 目前先手動增加資料
+        //  4. 清除
+        this.clear()
+       },
+       clear() {
       return (
+        (this.inp_branch_name= ""),
+        (this.inp_type = ""),
         (this.inp_title = ""),
+        (this.inp_content = ""),
         (this.inp_date = ""),
         (this.$refs.blah.src = "none"),
-        (this.$refs.imageInput.value = "")
-        // (this.$refs.to_top.value = 0)
+        (this.$refs.imageInput.value = ""),
+        (this.$refs.up_load_img_name.innerHTML="圖片名稱")
       );
     },
-    // 刪除資料
-    del(row) {
-      console.log(row);
-
-      this.tableData = this.tableData.filter((item) => {
-        console.log(item.id);
-        console.log(row.id);
-        return item.id !== row.id;
-      });
-    },
-    edit(row) {
-      console.log(row);
-      this.inp_branch_name = row.inp_branch_name_value;
-      this.inp_type = row.inp_type_value;
-      this.inp_title = row.inp_title;
-      this.inp_content = row.inp_content;
-      this.inp_date = row.inp_date;
-      this.inp_googlemap_url = row.inp_googlemap_url;
-      this.inp_to_top = row.inp_to_top;
-      this.$refs.blah.src = row.inp_img_url;
-
-      // this.$refs.imageInput.value = "C:\\fakepath\\台中成功店.jpg";
-      console.log(row.url);
-      // console.log("file", this.$refs.imageInput.files);
-      // C:\fakepath\台中成功店.jpg
-    },
-    showImage(e) {
-      // 上傳圖片顯示
-      const up_loag_url = e.target.files[0];
-      this.$refs.blah.src = URL.createObjectURL(up_loag_url);
-    },
-    handlechange(e) {
-      this.showImage(e);
-      this.getImageValue(e);
-    },
-
-    getRadioValue(e) {
-      // return e;
-      console.log("getRadioValue", e.target.id);
-      return (this.inp_to_top = e.target.id);
-    },
-    getImageValue(e) {
-      console.log("getImageValue", e.target.value);
-      // getImageValue C:\fakepath\飯店設施1.jpg
-      let split_image_value = e.target.value.split("\\");
-      // console.log(split_image_value[split_image_value.length - 1]);
-      // 獲取最後一個字串值
-      return (this.inp_img = split_image_value[split_image_value.length - 1]);
-    },
+     // 將圖片轉成base64
+     imgToBase64(file){
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = ()=>{
+        // console.log("base64",reader.result);
+        this.img_base64=reader.result
+        console.log("產生新的base64");
+        };
+      reader.onerror = (error)=> {
+      console.log('Error: ', error);
+   }},
   },
+   
 
   mounted() {
     document.querySelector("footer").style.display = "none";
     document.querySelector("#backend_nav").style.display = "block";
+    
+    fetch("http://localhost:3001/branch_manage")
+    .then((res)=>{
+      console.log(res)
+      return res.json()})
+    .then((data)=>{
+      console.log(data)
+      return (this.tableData=data)
+    })
+    .catch((err)=>console.log(err));
+
+    const active = document.querySelectorAll(".el-menu-item")
+    active.forEach((item)=>{
+      if(item.innerText==="分館介紹管理")
+      item.classList.add("is-active");
+     
+    })
+
   },
 };
 </script>
@@ -152,16 +252,16 @@ export default {
           required
           v-model="inp_branch_name"
         >
-          <option value="">--請選擇--</option>
-          <option value="B0001">桃園中壢車站店</option>
-          <option value="B0002">台中站前一館</option>
-          <option value="B0003">台中站前二館</option>
-          <option value="B0004">台中中正店</option>
-          <option value="B0005">台中成功店</option>
-          <option value="B0006">台中捷運中清店</option>
-          <option value="B0007">台中捷運文心店(逢甲1號店)</option>
-          <option value="B0008">高雄九如店</option>
-          <option value="B0009">高雄車站店</option>
+          <option value="" disabled>--請選擇--</option>
+          <option >桃園中壢車站店</option>
+          <option >台中站前一館</option>
+          <option >台中站前二館</option>
+          <option >台中中正店</option>
+          <option >台中成功店</option>
+          <option >台中捷運中清店</option>
+          <option >台中捷運文心店(逢甲1號店)</option>
+          <option >高雄九如店</option>
+          <option >高雄車站店</option>
         </select>
       </div>
       <div class="inp">
@@ -175,13 +275,15 @@ export default {
           required
           v-model="inp_type"
         >
-          <option value="">--請選擇--</option>
-          <option value="attraction">附近景點</option>
-          <option value="media">媒體曝光</option>
+          <option value="" disabled>--請選擇--</option>
+          <option >附近景點</option>
+          <option >媒體曝光</option>
+          <option >最新消息</option>
+          
         </select>
       </div>
       <div class="inp">
-        <div class="title">標題</div>
+        <div class="title">標題名稱</div>
         <input
           class="inp_title"
           type="text"
@@ -205,15 +307,7 @@ export default {
         <div class="title">上架日期</div>
         <input class="inp_date" type="date" required v-model="inp_date" />
       </div>
-      <div class="inp">
-        <div class="title">GoogleMap連結</div>
-        <input
-          class="inp_googlemap_url"
-          type="text"
-          v-model="inp_googlemap_url"
-          maxlength="100"
-        />
-      </div>
+    
       <div class="inp">
         <div class="title">上傳圖片</div>
         <div class="up_load">
@@ -226,7 +320,15 @@ export default {
             required
             @change="handlechange"
           />
-          <img id="blah" src="#" alt="image" ref="blah" />
+        
+        </div>
+      
+      </div>
+      <div class="inp show_up_load">
+          <div class="title"> 已上傳圖片</div>
+          <div class="up_load_img_box ">
+            <img id="blah" src="#" alt="image" ref="blah" />
+          <div class="up_load_img_name" ref="up_load_img_name">圖片名稱</div>
         </div>
       </div>
       <div class="inp">
@@ -254,25 +356,58 @@ export default {
         <label for="false">否，依照上架日期排序</label><br />
       </div>
       <div class="btns">
-        <button type="submit" @click="add" @click.prevent>送出</button>
+        <button type="button" @click="add(edit_id)" >送出</button>
         <button type="button" @click="clear">清除</button>
       </div>
     </form>
     <div class="table">
       <el-table :data="tableData" style="width: 100%">
         <el-table-column
-          prop="inp_branch_name"
+          label="序號"
+          :style="{ minWidth: '10%', maxWidth: '10%' }">
+          <!--等同 v-for="(item, index) in items" -->
+          <template v-slot="scope">
+            {{ scope.$index + 1 }}
+        </template>
+      </el-table-column>
+      <el-table-column
+          prop="branch_name"
           label="分店名稱"
           :style="{ minWidth: '10%', maxWidth: '10%' }"
         />
         <el-table-column
-          prop="inp_type"
+          prop="type"
           label="類型"
           :style="{ minWidth: '10%', maxWidth: '10%' }"
         />
         <el-table-column
-          prop="inp_title"
-          label="標題"
+          prop="title"
+          label="標題名稱"
+          :style="{ minWidth: '10%', maxWidth: '10%' }"
+        />
+        <el-table-column
+          prop="date"
+          label="上架日期"
+          :style="{ minWidth: '10%', maxWidth: '10%' }"
+        />
+        <el-table-column
+          prop="img_name"
+          label="圖名"
+          :style="{ minWidth: '10%', maxWidth: '10%' }"
+        />
+        <el-table-column
+          prop=""
+          label="縮圖"
+          :style="{ minWidth: '10%', maxWidth: '10%' }"
+        >
+        <!-- 讓element+呈現圖片方法 -->
+        <template v-slot="scope">
+          <img :src="scope.row.base64"/>
+        </template>
+      </el-table-column>
+        <el-table-column
+          prop="to_top"
+          label="置頂"
           :style="{ minWidth: '10%', maxWidth: '10%' }"
         />
 
@@ -302,7 +437,7 @@ export default {
       }
       .inp_branch_name,
       .inp_type,
-      .inp_googlemap_url,
+      .inp_url,
       .inp_title,
       .inp_content,
       .inp_date,

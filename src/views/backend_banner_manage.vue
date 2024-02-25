@@ -197,6 +197,7 @@ export default {
   mounted() {
     document.querySelector("footer").style.display = "none";
     document.querySelector("#backend_nav").style.display = "block";
+
     fetch("http://localhost:3001/banner_manage")
     .then((res)=>{
       console.log(res)
@@ -206,7 +207,17 @@ export default {
       return (this.tableData=data)
     })
     .catch((err)=>console.log(err));
+
+    const active = document.querySelectorAll(".el-menu-item")
+    console.log(active);
+    active.forEach((item)=>{
+      if(item.innerText==="Banner管理")
+      item.classList.add("is-active");
+      console.log(item.innerText);
+    })
   },
+  
+
 };
 </script>
 <template>
