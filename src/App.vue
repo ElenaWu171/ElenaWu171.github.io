@@ -48,6 +48,7 @@ export default {
 
 <template>
   <header>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <!-- 配合swiper調整z -->
     <div class="relative z-[2] font-[openhuninn]">
       <nav>
