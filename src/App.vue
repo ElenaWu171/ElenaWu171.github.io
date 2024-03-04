@@ -48,7 +48,8 @@ export default {
 
 <template>
   <header>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <!-- 沒有RWD建議不要加 -->
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1" /> -->
     <!-- 配合swiper調整z -->
     <div class="relative z-[2] font-[openhuninn]">
       <nav>
